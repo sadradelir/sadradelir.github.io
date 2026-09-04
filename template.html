@@ -1,0 +1,890 @@
+<title>Sadra Delir — Senior Game Developer</title>
+<meta name="description" content="Sadra Delir — Senior game developer &amp; technical lead. Unity/C#, multiplayer backend, 10+ years shipping mobile and PC games. Bonn, Germany.">
+<meta name="color-scheme" content="light dark">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+  :root{
+    --bg:#f7f5f1;
+    --paper:#ffffff;
+    --paper-2:#f0ece4;
+    --ink:#16150f;
+    --ink-muted:#5f594e;
+    --accent:#9a5a06;
+    --accent-soft:#fceccd;
+    --gold:#7c7266;
+    --gold-soft:#efe9df;
+    --border:#e2ddd2;
+    --backdrop:rgba(20,18,12,.55);
+    --shadow:0 1px 2px rgba(20,18,12,.05), 0 8px 24px rgba(20,18,12,.07);
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0b0b0a;
+      --paper:#141311;
+      --paper-2:#1c1a16;
+      --ink:#ece8e0;
+      --ink-muted:#9b9488;
+      --accent:#f5ab2e;
+      --accent-soft:#3a2a0d;
+      --gold:#8e8778;
+      --gold-soft:#2a2620;
+      --border:#2c2822;
+      --backdrop:rgba(0,0,0,.72);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b0b0a;
+    --paper:#141311;
+    --paper-2:#1c1a16;
+    --ink:#ece8e0;
+    --ink-muted:#9b9488;
+    --accent:#f5ab2e;
+    --accent-soft:#3a2a0d;
+    --gold:#8e8778;
+    --gold-soft:#2a2620;
+    --border:#2c2822;
+    --backdrop:rgba(0,0,0,.72);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    max-width:880px;
+    margin:0 auto;
+    padding:48px 24px 100px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (max-width:640px){ body{padding:28px 16px 72px;} }
+
+  a{color:inherit;}
+  .mono{font-family:var(--mono);}
+
+  .grid-tick{
+    background-image:linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:28px 100%;
+    background-repeat:repeat-x;
+    height:6px;
+    opacity:.5;
+    margin:0 0 32px;
+  }
+  h1,h2,h3{font-family:var(--sans); margin:0; text-wrap:balance;}
+
+  /* ---------- header ---------- */
+  .top{display:flex; align-items:flex-start; gap:22px; margin-bottom:8px;}
+  .avatar{
+    width:74px; height:74px; border-radius:50%;
+    background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:22px; font-weight:600;
+    border:1px solid var(--border);
+    flex:0 0 auto;
+  }
+  .top-text{flex:1 1 auto; min-width:0;}
+  h1{font-size:30px; font-weight:700; letter-spacing:-.01em;}
+  .role{color:var(--accent); font-family:var(--mono); font-size:13px; margin-top:4px; letter-spacing:.02em;}
+  @media (max-width:640px){
+    .top{gap:14px;}
+    .avatar{width:56px; height:56px; font-size:17px;}
+    h1{font-size:24px;}
+    .role{font-size:11px;}
+  }
+
+  .theme-toggle{
+    flex:0 0 auto;
+    width:34px; height:34px; border-radius:8px;
+    background:var(--paper); border:1px solid var(--border);
+    color:var(--ink-muted); font-size:15px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .theme-toggle:hover{border-color:var(--accent); color:var(--accent);}
+
+  .pitch{color:var(--ink-muted); font-size:15px; max-width:60ch; margin:18px 0 20px; line-height:1.7;}
+  .pitch strong{color:var(--ink); font-weight:600;}
+
+  .contact-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+  .contact-row a{
+    font-family:var(--mono); font-size:12.5px;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:5px;
+    padding:6px 11px;
+    text-decoration:none;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-row a:hover, .contact-row a:focus-visible{border-color:var(--accent); color:var(--accent);}
+
+  /* ---------- sections ---------- */
+  section{margin-top:48px;}
+  .section-label{
+    font-family:var(--mono); font-size:12px; color:var(--ink-muted);
+    letter-spacing:.08em; text-transform:uppercase;
+    margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:var(--border);}
+  .section-note{color:var(--ink-muted); font-size:13px; margin:-4px 0 18px; max-width:62ch;}
+
+  /* ---------- project cards ---------- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+    gap:14px;
+  }
+  @media (max-width:420px){ .card-grid{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    text-align:left;
+    padding:0;
+    font-family:inherit;
+    font-size:inherit;
+    color:inherit;
+    display:flex; flex-direction:column;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover, .card:focus-visible{border-color:var(--accent); transform:translateY(-2px); box-shadow:var(--shadow);}
+  .card:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .card-thumb{width:100%; aspect-ratio:16/10; object-fit:cover; background:var(--paper-2); display:block;}
+  .card-body{padding:12px 14px 14px; flex:1 1 auto;}
+  .card-tag{font-family:var(--mono); font-size:10px; color:var(--ink-muted); letter-spacing:.04em; display:flex; justify-content:space-between; gap:8px; margin-bottom:6px;}
+  .card-tag .live{color:var(--accent); font-weight:600; white-space:nowrap;}
+  .card-tag .pending{color:var(--gold); font-weight:600; white-space:nowrap;}
+  .card-tag .wip{color:var(--accent); font-weight:600; white-space:nowrap; opacity:.85;}
+  .wt{font-weight:400; color:var(--ink-muted); white-space:nowrap;}
+  .card-title{font-size:15px; font-weight:700; line-height:1.3;}
+  .card-tagline{color:var(--ink-muted); font-size:12.5px; margin-top:4px; font-style:italic;}
+
+  /* image-less card: typographic plate instead of a screenshot */
+  .card-plate{
+    width:100%; aspect-ratio:16/10;
+    background:var(--paper-2);
+    background-image:radial-gradient(var(--border) 1px, transparent 1px);
+    background-size:12px 12px;
+    display:flex; align-items:center; justify-content:center;
+    border-bottom:1px solid var(--border);
+  }
+  .card-plate span{
+    font-family:var(--mono); font-size:20px; font-weight:700;
+    color:var(--accent); letter-spacing:.06em;
+    background:var(--paper); border:1px solid var(--border); border-radius:8px;
+    padding:8px 12px;
+  }
+
+  .next-build{
+    border:1px dashed var(--border);
+    border-radius:10px;
+    padding:20px 22px;
+    color:var(--ink-muted);
+    font-size:13.5px;
+    text-align:center;
+    grid-column:1/-1;
+  }
+
+  /* ---------- experience timeline ---------- */
+  .timeline{border-left:1px solid var(--border); margin-left:6px;}
+  .job{position:relative; padding:0 0 22px 22px;}
+  .job:last-child{padding-bottom:0;}
+  .job::before{
+    content:""; position:absolute; left:-4.5px; top:7px;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--bg); border:1.5px solid var(--border);
+  }
+  .job.current::before{background:var(--accent); border-color:var(--accent);}
+  .job-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .job-title{font-size:15px; font-weight:700;}
+  .job-dates{font-family:var(--mono); font-size:11.5px; color:var(--ink-muted); white-space:nowrap;}
+  .job-org{color:var(--accent); font-size:13px; margin-top:1px;}
+  .job-org .where{color:var(--ink-muted);}
+  .job-desc{color:var(--ink-muted); font-size:13.5px; margin-top:6px; max-width:64ch;}
+
+  /* ---------- skills ---------- */
+  .skill-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px;
+  }
+  .skill-block{
+    background:var(--paper); border:1px solid var(--border); border-radius:10px;
+    padding:14px 16px 16px;
+  }
+  .skill-block h3{
+    font-family:var(--mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--ink-muted); margin-bottom:9px;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font-family:var(--mono); font-size:11.5px;
+    background:var(--paper-2); border:1px solid var(--border);
+    border-radius:4px; padding:3px 8px; color:var(--ink);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:52px; padding-top:18px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--ink-muted); font-family:var(--mono);
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  footer a{color:var(--ink-muted); text-decoration:none;}
+  footer a:hover{color:var(--accent);}
+
+  /* ---------- modal ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; background:var(--backdrop);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:40px 18px; overflow-y:auto;
+    z-index:50;
+  }
+  .modal-backdrop[hidden]{display:none;}
+  @media (max-width:640px){ .modal-backdrop{padding:16px 10px;} }
+  .modal{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:12px;
+    max-width:640px; width:100%;
+    overflow:hidden;
+    position:relative;
+    box-shadow:var(--shadow);
+    animation:pop .18s ease-out;
+  }
+  @keyframes pop{from{opacity:0; transform:translateY(8px) scale(.99);} to{opacity:1; transform:none;}}
+  .modal-close{
+    position:absolute; top:12px; right:12px;
+    width:30px; height:30px; border-radius:50%;
+    background:var(--paper); border:1px solid var(--border);
+    color:var(--ink); font-size:16px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; z-index:2;
+  }
+  .modal-close:hover{border-color:var(--accent); color:var(--accent);}
+
+  .build-bar{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:4px 12px;
+    padding:10px 46px 10px 18px;
+    background:var(--paper-2);
+    border-bottom:1px solid var(--border);
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-muted);
+    letter-spacing:.03em;
+  }
+  .build-bar .tag-live{color:var(--accent); font-weight:600;}
+  .build-bar .tag-pending{color:var(--gold); font-weight:600;}
+  .build-bar .tag-wip{color:var(--accent); font-weight:600; opacity:.85;}
+  .build-title .wt{font-size:15px;}
+  .build-hero{width:100%; display:block; aspect-ratio:16/9; object-fit:cover; background:var(--paper-2);}
+  .build-body{padding:22px 24px 24px;}
+  @media (max-width:640px){ .build-body{padding:18px 16px 20px;} .build-bar{padding:10px 42px 10px 14px;} }
+  .build-title{font-size:22px; font-weight:700; line-height:1.25;}
+  .build-tagline{color:var(--accent); font-size:14px; margin-top:3px; font-style:italic;}
+  .build-desc{color:var(--ink-muted); font-size:14.5px; margin:14px 0 18px; max-width:64ch; white-space:pre-line;}
+  .build-note{color:var(--ink-muted); font-size:13px; margin-top:16px; font-style:italic;}
+
+  .stat-rail{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:1px; background:var(--border);
+    border:1px solid var(--border); border-radius:7px; overflow:hidden;
+    margin-bottom:20px;
+  }
+  .stat-rail div{background:var(--paper); padding:10px 14px;}
+  .stat-rail .k{font-size:10.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:.06em;}
+  .stat-rail .v{font-family:var(--mono); font-size:13px; margin-top:2px;}
+
+  .highlights{margin:0 0 18px; padding-left:18px; color:var(--ink-muted); font-size:14px;}
+  .highlights li{margin-bottom:6px;}
+  .highlights strong{color:var(--ink); font-weight:600;}
+
+  .gallery{
+    display:flex; gap:10px; overflow-x:auto;
+    margin:0 -4px 18px; padding:4px;
+    scrollbar-width:thin;
+  }
+  .gallery img{
+    height:220px; width:auto; border-radius:6px; flex:0 0 auto;
+    border:1px solid var(--border);
+  }
+  @media (max-width:640px){ .gallery img{height:170px;} }
+
+  .build-links{display:flex; gap:10px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:12.5px;
+    display:inline-flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:6px;
+    text-decoration:none;
+    border:1px solid var(--accent);
+    color:var(--accent);
+  }
+  .btn.primary{background:var(--accent); color:var(--paper);}
+  .btn:hover{opacity:.88;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .modal{animation:none;}
+    .card:hover{transform:none;}
+  }
+</style>
+
+<div class="grid-tick"></div>
+
+<header class="top">
+  <div class="avatar">SD</div>
+  <div class="top-text">
+    <h1>Sadra Delir</h1>
+    <div class="role">SENIOR GAME DEVELOPER — UNITY / C# — BACKEND &amp; MULTIPLAYER</div>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
+</header>
+
+<div class="pitch">
+  <strong>10+ years</strong> shipping mobile and PC games — from a solo cosy puzzle game to real-time multiplayer RPGs and racing titles — plus the backend and infrastructure that keeps them running. Technical lead experience, and 100+ developers mentored into software careers. Based in Bonn, Germany. Currently building at Travian Games by day and a solo Unity action game by night, and open to Senior Developer / Technical Lead roles.
+</div>
+
+<div class="contact-row">
+  <a href="mailto:sadra.delir@gmail.com">sadra.delir@gmail.com</a>
+  <a href="https://www.linkedin.com/in/sadradelir/" target="_blank" rel="noopener">linkedin.com/in/sadradelir</a>
+  <a id="cv-link" href="#" download="Sadra_Delir_CV.docx">↓ résumé (.docx)</a>
+  <a href="#work">↓ projects</a>
+</div>
+
+<section id="work">
+  <div class="section-label">Studio work</div>
+  <div class="section-note">Live titles I've worked on as an employee, shown here only with the studio's permission. Rail Nation is a live game with thousands of active players — this entry is currently pending confirmation from Travian Games and isn't public yet.</div>
+
+  <div class="card-grid">
+    <button class="card reveal" data-target="detail-railnation">
+      <img class="card-thumb" src="data:image/jpeg;base64,{{RN_HERO_B64}}" alt="Rail Nation key art">
+      <div class="card-body">
+        <div class="card-tag"><span>STUDIO · BACKEND</span><span class="pending">⏳ PENDING</span></div>
+        <div class="card-title">Rail Nation — Backend &amp; Live-Ops</div>
+        <div class="card-tagline">Keeping a decade-old railroad empire running for thousands of players.</div>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section id="builds">
+  <div class="section-label">Independent projects</div>
+  <div class="section-note">Games and tools I've built on my own, outside of client/studio NDAs.</div>
+
+  <div class="card-grid">
+    <button class="card reveal" data-target="detail-lotk">
+      <!--IF:LOTK_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{LOTK_HERO_B64}}" alt="Lord of the Kings screenshot"><!--ENDIF-->
+      <!--IFNOT:LOTK_HERO_B64--><div class="card-plate"><span>LOTK</span></div><!--ENDIF-->
+      <div class="card-body">
+        <div class="card-tag"><span>BUILD 02 · UNITY 6</span><span class="wip">◆ IN DEV</span></div>
+        <div class="card-title">Lord of the Kings <span class="wt">(working title)</span></div>
+        <div class="card-tagline">Command an army, clear the room, live to spend the gold.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-cosmeow">
+      <img class="card-thumb" src="data:image/jpeg;base64,{{HERO_B64}}" alt="Cosmeow key art">
+      <div class="card-body">
+        <div class="card-tag"><span>BUILD 01 · v1.0</span><span class="live">● LIVE</span></div>
+        <div class="card-title">Cosmeow: Light &amp; Reflection Puzzle</div>
+        <div class="card-tagline">Bend the sunlight. Bloom the garden.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-framecolor">
+      <!--IF:FC_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{FC_HERO_B64}}" alt="Frame Coloring V2 screenshot"><!--ENDIF-->
+      <!--IFNOT:FC_HERO_B64--><div class="card-plate"><span>TOOL</span></div><!--ENDIF-->
+      <div class="card-body">
+        <div class="card-tag"><span>TOOL · C# / .NET</span><span>IN USE</span></div>
+        <div class="card-title">Frame Coloring V2</div>
+        <div class="card-tagline">Recolouring a hand-drawn animation without opening Photoshop.</div>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section id="past">
+  <div class="section-label">Selected past work</div>
+  <div class="section-note">Shipped titles and systems from earlier roles. The screenshots aren't mine to publish, so these are written up rather than shown.</div>
+
+  <div class="card-grid">
+    <button class="card reveal" data-target="detail-racing">
+      <div class="card-plate"><span>RACE</span></div>
+      <div class="card-body">
+        <div class="card-tag"><span>CAFE BAZAAR · UNITY</span><span>2020–21</span></div>
+        <div class="card-title">Mobile Racing Game</div>
+        <div class="card-tagline">Car physics, self-driving AI, and a garage full of parts.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-rpg">
+      <div class="card-plate"><span>RPG</span></div>
+      <div class="card-body">
+        <div class="card-tag"><span>PART GAMES · MULTIPLAYER</span><span>2016–20</span></div>
+        <div class="card-title">Real-Time Multiplayer RPG</div>
+        <div class="card-tagline">An authoritative server that never trusts the client.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-puzzlerun">
+      <div class="card-plate"><span>VOICE</span></div>
+      <div class="card-body">
+        <div class="card-tag"><span>PUZZLE RUN · AR</span><span>2022</span></div>
+        <div class="card-title">Co-op AR Game — Voice Detection</div>
+        <div class="card-tagline">Turning the microphone into a game controller.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-divar">
+      <div class="card-plate"><span>PLTFM</span></div>
+      <div class="card-body">
+        <div class="card-tag"><span>DIVAR · BACKEND</span><span>2021–22</span></div>
+        <div class="card-title">Divar — Backend &amp; Jobs CMS</div>
+        <div class="card-tagline">Microservices behind Iran's largest classifieds platform.</div>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">Experience</div>
+
+  <div class="timeline">
+    <div class="job current reveal">
+      <div class="job-head"><div class="job-title">Senior Game Developer</div><div class="job-dates">Jan 2025 — present</div></div>
+      <div class="job-org">Travian Games <span class="where">· Munich, Germany (remote)</span></div>
+      <div class="job-desc">Individual contributor and technical advisor on live mobile/browser strategy titles within a senior engineering team.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Technical Lead &amp; Senior Game Developer</div><div class="job-dates">Mar 2022 — Jan 2025</div></div>
+      <div class="job-org">Bright Future GmbH <span class="where">· Cologne, Germany</span></div>
+      <div class="job-desc">Led technical direction and day-to-day execution across game projects — setting architecture, coding standards, and delivery practice for the team.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Senior Game Developer &amp; Consultant</div><div class="job-dates">2022 — 2023</div></div>
+      <div class="job-org">Puzzle Run · Planet Memes <span class="where">· remote</span></div>
+      <div class="job-desc">Built a local voice-detection system in Unity (spectrum analysis, FFT) for a co-op AR mobile game, plus the Node.js multiplayer server. Ran developer interviews and owned code quality.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Software Developer</div><div class="job-dates">May 2021 — Feb 2022</div></div>
+      <div class="job-org">Divar <span class="where">· Tehran, Iran</span></div>
+      <div class="job-desc">Backend features for divar.ir within a Kubernetes-orchestrated microservice architecture, and the Django CMS powering the Divar Jobs admin panel.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Game Developer</div><div class="job-dates">Jun 2020 — May 2021</div></div>
+      <div class="job-org">Cafe Bazaar <span class="where">· Iran</span></div>
+      <div class="job-desc">Led development of a Unity mobile racing game: core mechanics, car physics, self-driving AI, and a full vehicle customization system with a designer-facing balancing tool.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Co-Founder &amp; Lead Developer</div><div class="job-dates">May 2016 — May 2020</div></div>
+      <div class="job-org">Part Games Studio <span class="where">· Tehran, Iran</span></div>
+      <div class="job-desc">Co-founded an indie studio and led engineering across 5 published mobile games and 3 Android apps — real-time multiplayer, an authoritative backend with 2D physics, leaderboards, chat, and tournaments.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Instructor — C# &amp; Java Backend</div><div class="job-dates">2019 — Nov 2021</div></div>
+      <div class="job-org">MAPSA HR &amp; Training <span class="where">· Tehran, Iran</span></div>
+      <div class="job-desc">Trained and mentored 100+ students in advanced C# and Java backend development, software engineering fundamentals (OOP, SOLID, clean code), and technical-interview practice.</div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head"><div class="job-title">Android Developer</div><div class="job-dates">Dec 2013 — May 2016</div></div>
+      <div class="job-org">FANAP <span class="where">· Tehran, Iran</span></div>
+      <div class="job-desc">Built the Pasargad Bank *720# mobile payment app and the Datex stock-trading Android app, and contributed to a shopping-based social network client.</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+
+  <div class="skill-grid">
+    <div class="skill-block reveal">
+      <h3>Games</h3>
+      <div class="chips">
+        <span class="chip">Unity</span><span class="chip">C#</span><span class="chip">Game AI</span>
+        <span class="chip">Physics</span><span class="chip">DSP / FFT</span><span class="chip">AR</span>
+        <span class="chip">Editor tooling</span><span class="chip">Animation pipelines</span>
+        <span class="chip">2D art</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Backend &amp; multiplayer</h3>
+      <div class="chips">
+        <span class="chip">.NET</span><span class="chip">Node.js</span><span class="chip">Authoritative servers</span>
+        <span class="chip">Microservices</span><span class="chip">PHP</span><span class="chip">Django / Python</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Infrastructure</h3>
+      <div class="chips">
+        <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Live-ops</span>
+        <span class="chip">Performance profiling</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Mobile</h3>
+      <div class="chips">
+        <span class="chip">Android</span><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">iOS builds</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Ways of working</h3>
+      <div class="chips">
+        <span class="chip">Technical leadership</span><span class="chip">Mentoring</span>
+        <span class="chip">Clean code</span><span class="chip">SOLID</span><span class="chip">Code review</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Languages</h3>
+      <div class="chips">
+        <span class="chip">Persian — native</span><span class="chip">Azerbaijani — native</span>
+        <span class="chip">English — professional</span><span class="chip">Turkish — limited</span><span class="chip">German — elementary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>updated 2026-09 · Bonn, DE</span>
+  <span><a href="mailto:sadra.delir@gmail.com">say hello →</a></span>
+</footer>
+
+<!-- ===== detail templates (hidden; cloned into the modal on click) ===== -->
+<template id="detail-lotk">
+  <div class="build-bar">
+    <span>BUILD 02 <span class="mono">· Unity 6 · solo</span></span>
+    <span class="tag-wip">◆ IN DEVELOPMENT</span>
+  </div>
+  <!--IF:LOTK_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{LOTK_HERO_B64}}" alt="Lord of the Kings screenshot"><!--ENDIF-->
+  <div class="build-body">
+    <div class="build-title">Lord of the Kings <span class="wt">(working title)</span></div>
+    <div class="build-tagline">Command an army, clear the room, live to spend the gold.</div>
+    <div class="build-desc">A 2D side-view action game where you play a commander, not a lone hero: fight in a beat-'em-up layer, recruit and command units around you, build up a camp between runs. Unity 6 / URP. Steam-bound, unannounced.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity 6 · URP</div></div>
+      <div><div class="k">Role</div><div class="v">Code + 2D art</div></div>
+      <div><div class="k">Code</div><div class="v">~28k lines C#</div></div>
+      <div><div class="k">Status</div><div class="v">In development</div></div>
+    </div>
+    <ul class="highlights">
+      <li><strong>I drew the 2D art myself</strong> — characters, environments and props, everything you see standing still. The frame animation is by a dedicated animator; I built the pipeline that colours and ships it.</li>
+      <li><strong>Combat is driven by animation events, not timers</strong> — every attack, hit reaction and combo window is an animator state Enter/Exit event, so the frames and the code can never drift apart.</li>
+      <li><strong>Fake-3D altitude in a 2D game.</strong> Height is its own axis on top of the sprite transform, so jumps, air combos and ground shadows work while the world stays a 2.5D "lanes by depth" setup.</li>
+      <li><strong>Enemies surround you instead of piling up</strong> — per-type attack tokens cap how many can commit at once, and elliptical standby rings hand out slots around the target, biased toward the emptier side.</li>
+      <li><strong>Custom graph pathfinding</strong> (BFS over authored nav edges with per-team affiliation) rather than NavMesh — the level geometry is drawn, not baked.</li>
+      <li><strong>Roguelite economy with two clocks</strong>: gems and unlocks survive between runs, gold, items and perks die with the run — two vocabularies kept deliberately separate in the data model.</li>
+      <li>Built on a hand-rolled <strong>service-locator + lifecycle framework</strong> (ordered system init, safe update hooks, a global pause every system respects), with Addressables-loaded content and UniTask throughout.</li>
+      <li>Plus the editor tooling to feed it: sprite pivot editor, hold-animation builder, in-scene nav-graph authoring, and a Figma→Unity palette importer.</li>
+    </ul>
+    <!--IF:LOTK_SHOT1_B64-->
+    <div class="gallery">
+      <img src="data:image/jpeg;base64,{{LOTK_SHOT1_B64}}" alt="Lord of the Kings screenshot 1" loading="lazy">
+      <!--IF:LOTK_SHOT2_B64--><img src="data:image/jpeg;base64,{{LOTK_SHOT2_B64}}" alt="Lord of the Kings screenshot 2" loading="lazy"><!--ENDIF-->
+      <!--IF:LOTK_SHOT3_B64--><img src="data:image/jpeg;base64,{{LOTK_SHOT3_B64}}" alt="Lord of the Kings screenshot 3" loading="lazy"><!--ENDIF-->
+    </div>
+    <!--ENDIF-->
+    <div class="build-note">Not announced yet, so there's no store page to link — happy to show a build on a call.</div>
+  </div>
+</template>
+
+<template id="detail-framecolor">
+  <div class="build-bar">
+    <span>TOOL <span class="mono">· C# / .NET 7 · WinForms</span></span>
+    <span>BUILT FOR THE GAME</span>
+  </div>
+  <!--IF:FC_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{FC_HERO_B64}}" alt="Frame Coloring V2 screenshot"><!--ENDIF-->
+  <div class="build-body">
+    <div class="build-title">Frame Coloring V2</div>
+    <div class="build-tagline">Recolouring a hand-drawn animation without opening Photoshop.</div>
+    <div class="build-desc">My game's animation is drawn by hand, frame by frame — which means colouring hundreds of PNGs the same way, over and over. So I wrote the tool I wanted: open a whole animation, paint one frame, and have every operation apply across the selection.</div>
+    <div class="stat-rail">
+      <div><div class="k">Stack</div><div class="v">C# · .NET 7</div></div>
+      <div><div class="k">UI</div><div class="v">WinForms</div></div>
+      <div><div class="k">Imaging</div><div class="v">ImageSharp</div></div>
+      <div><div class="k">Size</div><div class="v">~7k lines</div></div>
+    </div>
+    <ul class="highlights">
+      <li><strong>Every tool is a batch tool.</strong> Fill, replace, brush, crop, flip and every filter apply to all selected frames as one undo step — the first is the one you paint on, the rest show as onion skin.</li>
+      <li><strong>Shading-preserving recolour</strong>: replace fill swaps a key colour and keeps its shading ramp, so the drawing's volume survives the palette change.</li>
+      <li><strong>Photoshop-grade filters, reimplemented</strong> — Curves with per-channel and composite passes over a live histogram, Gradient Map with an editable ramp, and a true disc Median that cleans jagged anti-aliasing without the blur a Gaussian would add.</li>
+      <li><strong>Signed distance field baker with sub-pixel edge fit.</strong> Reconstructing where the silhouette really falls between pixels lands a mean error of <strong>0.05px</strong> on a 45° edge and 0.13px on a circle, against 0.15/0.27px straight from the binary mask — inside the 0.19px an 8-bit alpha channel can even represent. Supersampling the mask, the usual trick, measured worse (0.28/0.35px): duplicating pixels adds no information about where the edge sits.</li>
+      <li>Undo history across every pixel operation, capped by both step count and memory; long batches run in the background with progress and cancel.</li>
+    </ul>
+    <!--IF:FC_SHOT1_B64-->
+    <div class="gallery">
+      <img src="data:image/jpeg;base64,{{FC_SHOT1_B64}}" alt="Frame Coloring V2 screenshot 1" loading="lazy">
+      <!--IF:FC_SHOT2_B64--><img src="data:image/jpeg;base64,{{FC_SHOT2_B64}}" alt="Frame Coloring V2 screenshot 2" loading="lazy"><!--ENDIF-->
+    </div>
+    <!--ENDIF-->
+    <div class="build-note">Written for one artist — me — so it optimises for keeping a hand on the mouse: auto-advance after a fill, keyboard tool switching, and frame stepping on the scroll wheel.</div>
+  </div>
+</template>
+
+<template id="detail-cosmeow">
+  <div class="build-bar">
+    <span>BUILD 01 <span class="mono">· v1.0</span></span>
+    <span class="tag-live">● LIVE ON GOOGLE PLAY</span>
+  </div>
+  <img class="build-hero" src="data:image/jpeg;base64,{{HERO_B64}}" alt="Cosmeow key art">
+  <div class="build-body">
+    <div class="build-title">Cosmeow: Light &amp; Reflection Puzzle</div>
+    <div class="build-tagline">Bend the sunlight. Bloom the garden.</div>
+    <div class="build-desc">A solo-built, cosy puzzle game: route sunlight through mirrors and prisms to bloom flowers without waking the sleeping cats. Handcrafted levels, no timers, no pressure — just one beam and a hundred ways to solve it.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Role</div><div class="v">Solo dev</div></div>
+      <div><div class="k">Platform</div><div class="v">Android</div></div>
+      <div><div class="k">Studio</div><div class="v">OddGridGames</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Built <strong>end to end alone</strong> — mechanics, level design, art direction, store presence and release.</li>
+      <li>Custom light-propagation system: reflection, refraction and colour mixing resolved every frame.</li>
+      <li>Hand-authored level progression tuned for a no-fail, no-timer difficulty curve.</li>
+    </ul>
+    <div class="gallery">
+      <img src="data:image/jpeg;base64,{{SHOT1_B64}}" alt="Cosmeow gameplay screenshot 1" loading="lazy">
+      <img src="data:image/jpeg;base64,{{SHOT2_B64}}" alt="Cosmeow gameplay screenshot 2" loading="lazy">
+      <img src="data:image/jpeg;base64,{{SHOT3_B64}}" alt="Cosmeow gameplay screenshot 3" loading="lazy">
+      <img src="data:image/jpeg;base64,{{SHOT4_B64}}" alt="Cosmeow gameplay screenshot 4" loading="lazy">
+      <img src="data:image/jpeg;base64,{{SHOT5_B64}}" alt="Cosmeow gameplay screenshot 5" loading="lazy">
+    </div>
+    <div class="build-links">
+      <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.OddGridGames.HyperSpiegel" target="_blank" rel="noopener">▶ Google Play</a>
+      <a class="btn" href="https://cosmeow.oddgridgames.com" target="_blank" rel="noopener">game site ↗</a>
+    </div>
+  </div>
+</template>
+
+<template id="detail-railnation">
+  <div class="build-bar">
+    <span>STUDIO WORK <span class="mono">· Travian Games</span></span>
+    <span class="tag-pending">⏳ PENDING PERMISSION</span>
+  </div>
+  <img class="build-hero" src="data:image/jpeg;base64,{{RN_HERO_B64}}" alt="Rail Nation key art">
+  <div class="build-body">
+    <div class="build-title">Rail Nation — Backend &amp; Live-Ops Engineering</div>
+    <div class="build-tagline">Build your own railroad empire — live since 2012, still running today.</div>
+    <div class="build-desc">Backend engineer on Rail Nation, a long-running browser/mobile economic strategy game with thousands of active players.</div>
+    <div class="stat-rail">
+      <div><div class="k">Role</div><div class="v">Backend Engineer</div></div>
+      <div><div class="k">Stack</div><div class="v">C#, .NET, PHP</div></div>
+      <div><div class="k">Infra</div><div class="v">AWS / Kubernetes</div></div>
+      <div><div class="k">Studio</div><div class="v">Travian Games</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Diagnosed and fixed a severe production performance issue — sustained server CPU load from <strong>~100% down to ~10%</strong>.</li>
+      <li>Built and maintained C#/PHP backend APIs and gameplay systems: Avatar Editor, Task System, License Trader, Ranking, Train Management.</li>
+      <li>Wrote internal .NET tooling for real-time code generation, cutting feature turnaround for the team.</li>
+      <li>Worked on AWS/Kubernetes production infrastructure and helped migrate functionality from the legacy web client toward the newer Unity client.</li>
+    </ul>
+    <div class="gallery">
+      <img src="data:image/jpeg;base64,{{RN_SHOT1_B64}}" alt="Rail Nation gameplay screenshot 1" loading="lazy">
+      <img src="data:image/jpeg;base64,{{RN_SHOT2_B64}}" alt="Rail Nation gameplay screenshot 2" loading="lazy">
+      <img src="data:image/jpeg;base64,{{RN_SHOT3_B64}}" alt="Rail Nation gameplay screenshot 3" loading="lazy">
+      <img src="data:image/jpeg;base64,{{RN_SHOT4_B64}}" alt="Rail Nation gameplay screenshot 4" loading="lazy">
+    </div>
+    <div class="build-links">
+      <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.traviangames.railnationworld" target="_blank" rel="noopener">▶ Google Play</a>
+      <a class="btn" href="https://www.rail-nation.com/" target="_blank" rel="noopener">game site ↗</a>
+    </div>
+  </div>
+</template>
+
+<template id="detail-racing">
+  <div class="build-bar">
+    <span>PAST WORK <span class="mono">· Cafe Bazaar</span></span>
+    <span>2020 — 2021</span>
+  </div>
+  <div class="build-body">
+    <div class="build-title">Mobile Racing Game</div>
+    <div class="build-tagline">Car physics, self-driving AI, and a garage full of parts.</div>
+    <div class="build-desc">Led development of a Unity mobile racing title at Cafe Bazaar — from the feel of the car under your thumb to the meta-game that keeps players coming back.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Role</div><div class="v">Lead developer</div></div>
+      <div><div class="k">Platform</div><div class="v">Mobile</div></div>
+      <div><div class="k">Studio</div><div class="v">Cafe Bazaar</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Owned <strong>core mechanics and car physics</strong> — handling, traction and collision feel tuned for touch controls.</li>
+      <li>Implemented <strong>self-driving AI opponents</strong> with advanced in-game navigation.</li>
+      <li>Shipped a full <strong>vehicle customization system</strong> (parts, colours, decals) plus a designer-facing balancing tool, so tuning no longer needed an engineer.</li>
+      <li>Built the meta-game systems around progression and rewards.</li>
+    </ul>
+    <div class="build-note">Screenshots and build links are the studio's to publish — happy to walk through the work in detail.</div>
+  </div>
+</template>
+
+<template id="detail-rpg">
+  <div class="build-bar">
+    <span>PAST WORK <span class="mono">· Part Games Studio</span></span>
+    <span>2016 — 2020</span>
+  </div>
+  <div class="build-body">
+    <div class="build-title">Real-Time Multiplayer RPG</div>
+    <div class="build-tagline">An authoritative server that never trusts the client.</div>
+    <div class="build-desc">Co-founded Part Games Studio and led engineering across 5 published mobile games and 3 Android apps. The flagship was a real-time multiplayer RPG built on a server that simulated the world itself.</div>
+    <div class="stat-rail">
+      <div><div class="k">Role</div><div class="v">Co-founder / lead</div></div>
+      <div><div class="k">Stack</div><div class="v">Unity, C#</div></div>
+      <div><div class="k">Shipped</div><div class="v">5 games, 3 apps</div></div>
+      <div><div class="k">Studio</div><div class="v">Part Games</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Built <strong>real-time multiplayer gameplay</strong> on an authoritative backend running its own 2D physics simulation.</li>
+      <li>Designed backend services — <strong>leaderboards, chat, tournaments</strong> — reused across idle/clicker titles and a mobile strategy client.</li>
+      <li>Set technical direction for the studio and mentored the engineering team.</li>
+    </ul>
+    <div class="build-note">Most of these titles have since been delisted; happy to walk through the architecture on a call.</div>
+  </div>
+</template>
+
+<template id="detail-puzzlerun">
+  <div class="build-bar">
+    <span>PAST WORK <span class="mono">· Puzzle Run</span></span>
+    <span>2022</span>
+  </div>
+  <div class="build-body">
+    <div class="build-title">Co-op AR Game — Voice Detection</div>
+    <div class="build-tagline">Turning the microphone into a game controller.</div>
+    <div class="build-desc">Senior developer and technical consultant on a cooperative AR mobile game where players' voices drive the gameplay — all processed on-device, with no cloud speech service in the loop.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Server</div><div class="v">Node.js</div></div>
+      <div><div class="k">Role</div><div class="v">Senior dev / consultant</div></div>
+      <div><div class="k">Domain</div><div class="v">AR · audio DSP</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Researched and built a <strong>local voice-detection system</strong> in Unity using sound-spectrum analysis and FFT — low latency, works offline, keeps audio on the device.</li>
+      <li>Developed and maintained the <strong>Node.js multiplayer server</strong> handling real-time session and asset management.</li>
+      <li>Owned technical advisory, ran developer interviews, and maintained code quality across the project.</li>
+    </ul>
+  </div>
+</template>
+
+<template id="detail-divar">
+  <div class="build-bar">
+    <span>PAST WORK <span class="mono">· Divar</span></span>
+    <span>2021 — 2022</span>
+  </div>
+  <div class="build-body">
+    <div class="build-title">Divar — Backend &amp; Jobs CMS</div>
+    <div class="build-tagline">Microservices behind Iran's largest classifieds platform.</div>
+    <div class="build-desc">Backend engineer at Divar, working on divar.ir — a classifieds platform at national scale, built as microservices orchestrated on Kubernetes.</div>
+    <div class="stat-rail">
+      <div><div class="k">Stack</div><div class="v">Python / Django</div></div>
+      <div><div class="k">Infra</div><div class="v">Kubernetes</div></div>
+      <div><div class="k">Arch</div><div class="v">Microservices</div></div>
+      <div><div class="k">Company</div><div class="v">Divar</div></div>
+    </div>
+    <ul class="highlights">
+      <li>Built backend features inside a <strong>Kubernetes-orchestrated microservice architecture</strong> serving Iran's largest classifieds platform.</li>
+      <li>Developed the <strong>Django-based CMS</strong> powering the Divar Jobs administration panel.</li>
+    </ul>
+    <div class="build-links">
+      <a class="btn" href="https://divar.ir" target="_blank" rel="noopener">divar.ir ↗</a>
+    </div>
+  </div>
+</template>
+
+<div class="modal-backdrop" id="modal-backdrop" hidden>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---- theme toggle ---- */
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch(e){}
+  if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+
+  function currentlyDark(){
+    var rgb = getComputedStyle(document.body).backgroundColor.match(/\d+/g);
+    if (!rgb) return false;
+    var lum = (+rgb[0] + +rgb[1] + +rgb[2]) / 3;
+    return lum < 128;
+  }
+  toggle.addEventListener('click', function(){
+    var next = currentlyDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e){}
+  });
+
+  /* ---- résumé download (inlined at build time) ---- */
+  var cv = document.getElementById('cv-link');
+  var cvData = "{{CV_B64}}";
+  if (cvData && cvData.charAt(0) !== '{') {
+    cv.href = "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64," + cvData;
+  } else if (cv) {
+    cv.parentNode.removeChild(cv);
+  }
+
+  /* ---- project modal ---- */
+  var backdrop = document.getElementById('modal-backdrop');
+  var body = document.getElementById('modal-body');
+  var closeBtn = document.getElementById('modal-close');
+  var lastFocus = null;
+
+  function openCard(card){
+    var tpl = document.getElementById(card.getAttribute('data-target'));
+    if(!tpl) return;
+    lastFocus = card;
+    body.innerHTML = '';
+    body.appendChild(tpl.content.cloneNode(true));
+    backdrop.hidden = false;
+    backdrop.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeModal(){
+    backdrop.hidden = true;
+    body.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('.card[data-target]').forEach(function(card){
+    card.addEventListener('click', function(){ openCard(card); });
+  });
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e){ if(e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !backdrop.hidden) closeModal();
+  });
+
+  /* ---- reveal on scroll ---- */
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>

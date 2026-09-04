@@ -1,0 +1,6 @@
+# original, unoptimised screenshots — assets/ holds the compressed versions
+images/
+
+node_modules/
+.DS_Store
+Thumbs.db
