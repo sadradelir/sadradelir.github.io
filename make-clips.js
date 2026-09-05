@@ -28,6 +28,8 @@ const KEYS = {
   battleday:  { alias: ["battleday", "rpg", "battle-day"] },
   racing:     { alias: ["racing", "race", "carcustomizationinunity", "cafebazaar"],
                 seconds: 20 },   // the customization showcase runs long
+  idlerunner: { alias: ["idlerunner", "runner", "shahkeyvan", "kingkeyvan"],
+                from: 2, seconds: 20 },   // skip the studio title card
 };
 const EXTS = [".mp4", ".mov", ".mkv", ".webm", ".avi", ".gif", ".m4v"];
 

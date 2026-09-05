@@ -38,6 +38,7 @@ const IMAGES = {
   RN_CLIP:   "clips/railnation.mp4",
   BD_CLIP:   "clips/battleday.mp4",
   RACE_CLIP: "clips/racing.mp4",
+  IR_CLIP:   "clips/idlerunner.mp4",
 
   // Lord of the Kings (working title) — drop PNG/JPGs in assets/lotk/
   LOTK_HERO_B64:  "lotk/hero.jpg",
@@ -50,6 +51,7 @@ const IMAGES = {
   RACE_HERO_B64: "racing/hero.jpg",
   DV_HERO_B64:   "divar/hero.jpg",
   VC_HERO_B64:   "voice/hero.jpg",
+  IR_HERO_B64:   "idlerunner/hero.jpg",
 
   // Frame Coloring V2 — drop PNGs in assets/framecolor/
   FC_HERO_B64:  "framecolor/hero.jpg",
@@ -66,7 +68,7 @@ const FILES = {
 const OPTIONAL = new Set([
   "AVATAR_B64",
   "LOTK_CLIP", "FC_CLIP", "CM_CLIP", "RN_CLIP", "BD_CLIP", "RACE_CLIP",
-  "BD_HERO_B64", "RACE_HERO_B64", "DV_HERO_B64", "VC_HERO_B64",
+  "BD_HERO_B64", "RACE_HERO_B64", "DV_HERO_B64", "VC_HERO_B64", "IR_HERO_B64", "IR_CLIP",
   "LOTK_HERO_B64", "LOTK_SHOT1_B64", "LOTK_SHOT2_B64", "LOTK_SHOT3_B64",
   "FC_HERO_B64", "FC_SHOT1_B64", "FC_SHOT2_B64",
 ]);

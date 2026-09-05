@@ -476,6 +476,19 @@
       </div>
     </button>
 
+    <button class="card reveal" data-target="detail-idlerunner">
+      <div class="card-media">
+        <!--IF:IR_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{IR_HERO_B64}}" alt="Shah Keyvan character line-up"><!--ENDIF-->
+        <!--IFNOT:IR_HERO_B64--><div class="card-plate"><span>IDLE</span></div><!--ENDIF-->
+        <!--IF:IR_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="data:video/mp4;base64,{{IR_CLIP}}"></video><!--ENDIF-->
+      </div>
+      <div class="card-body">
+        <div class="card-tag"><span>PART GAMES · IDLE RPG</span><span>2016–20</span></div>
+        <div class="card-title">Mobile Idle Runner</div>
+        <div class="card-tagline">A clicker RPG people stayed for the story.</div>
+      </div>
+    </button>
+
     <button class="card reveal" data-target="detail-puzzlerun">
       <div class="card-media">
         <!--IF:VC_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{VC_HERO_B64}}" alt="Voice detection waveform"><!--ENDIF-->
@@ -800,6 +813,33 @@
       <li>Set technical direction for the studio and mentored the engineering team.</li>
     </ul>
     <div class="build-note">Most of these titles have since been delisted; happy to walk through the architecture on a call.</div>
+  </div>
+</template>
+
+<template id="detail-idlerunner">
+  <div class="build-bar">
+    <span>PAST WORK <span class="mono">· Part Games Studio</span></span>
+    <span>2016 — 2020</span>
+  </div>
+  <!--IF:IR_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{IR_HERO_B64}}" alt="Shah Keyvan character line-up"><!--ENDIF-->
+  <div class="build-body">
+    <div class="build-title">Mobile Idle Runner</div>
+    <div class="build-tagline">A clicker RPG people stayed for the story.</div>
+    <div class="build-desc">Shipped as <em>Shah Keyvan</em>: an idle/clicker action RPG in the Tap Titans mould — two buttons, one thumb, endless levels, and a hero who keeps earning loot while you are away. What set it apart was not the tapping. It was the writing: a story told in short, funny cut-scenes with voice acting, which is what players actually came back for.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Role</div><div class="v">Client + art director</div></div>
+      <div><div class="k">Genre</div><div class="v">Idle / clicker RPG</div></div>
+      <div><div class="k">Studio</div><div class="v">Part Games</div></div>
+    </div>
+    <ul class="highlights">
+      <li><strong>I was the art director and drew all of it</strong> — every character in the line-up above is mine, from design through final art, along with the environments and UI. The frame animation was by a dedicated animator.</li>
+      <li>Built the <strong>entire Unity client</strong>: the idle simulation, combat, progression and the cut-scene playback the story is told through.</li>
+      <li><strong>Designed the cast and the tone.</strong> The humour and the characters were the selling point — a genre where most entries are a number going up.</li>
+      <li>Idle progression that keeps paying out <strong>offline and AFK</strong>, so a coffee-break session and an evening session are both worth playing.</li>
+      <li>Reduced to <strong>two buttons and one thumb</strong> — every interaction had to survive being played one-handed on a bus.</li>
+    </ul>
+    <div class="build-note">A Part Games title from the studio era; happy to talk through the art pipeline or the idle maths on a call.</div>
   </div>
 </template>
 
