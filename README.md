@@ -3,12 +3,20 @@
 My portfolio site. `index.html` carries its images and the résumé inlined as
 base64, so the page needs no image requests at all.
 
-The card hover clips are the exception: they are **linked**, not inlined, and
-live in `assets/clips/`. With `preload="none"` the browser fetches one only when
-the pointer reaches its card, which keeps them out of the first page load
-entirely — inlining four clips put 2 MB of video in front of every visitor,
-including the ones on a phone who never hover anything. Keep `assets/` next to
-`index.html` and the page still works from a plain folder or a USB stick.
+Anything a visitor may never look at is **linked** rather than inlined: the card
+hover clips and every modal gallery shot. A clip is fetched when the pointer
+reaches its card (`preload="none"`), a gallery when its modal opens. Inlining
+them put ~2.9 MB in front of every visitor, including phone visitors who have no
+pointer to hover with and may never open a card at all.
+
+What stays inlined is what the first screen actually shows — the card covers,
+the avatar and the résumé. Keep `assets/` next to `index.html` and the page still
+works from a plain folder or a USB stick.
+
+Linked images carry explicit `width`/`height` so the gallery reserves its row
+before they arrive, and they are deliberately **not** `loading="lazy"`: the modal
+opening is already the gate, and lazy only added a second wait once the reader
+scrolled to them.
 
 ## Build
 

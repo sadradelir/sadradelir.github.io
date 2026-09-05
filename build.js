@@ -18,24 +18,12 @@ const ASSETS = path.join(ROOT, "assets");
 // placeholder -> asset file (relative to assets/)
 const IMAGES = {
   HERO_B64:     "cosmeow/hero.jpg",
-  SHOT1_B64:    "cosmeow/shot1.jpg",
-  SHOT2_B64:    "cosmeow/shot2.jpg",
-  SHOT3_B64:    "cosmeow/shot3.jpg",
-  SHOT4_B64:    "cosmeow/shot4.jpg",
-  SHOT5_B64:    "cosmeow/shot5.jpg",
   RN_HERO_B64:  "railnation/hero.jpg",
-  RN_SHOT1_B64: "railnation/shot1.jpg",
-  RN_SHOT2_B64: "railnation/shot2.jpg",
-  RN_SHOT3_B64: "railnation/shot3.jpg",
-  RN_SHOT4_B64: "railnation/shot4.jpg",
 
   AVATAR_B64: "avatar.jpg",
 
   // Lord of the Kings (working title) — drop PNG/JPGs in assets/lotk/
   LOTK_HERO_B64:  "lotk/hero.jpg",
-  LOTK_SHOT1_B64: "lotk/shot1.jpg",
-  LOTK_SHOT2_B64: "lotk/shot2.jpg",
-  LOTK_SHOT3_B64: "lotk/shot3.jpg",
 
   // BattleDay (Part Games) — drop JPGs in assets/battleday/
   BD_HERO_B64:   "battleday/hero.jpg",
@@ -46,8 +34,6 @@ const IMAGES = {
 
   // Frame Coloring V2 — drop PNGs in assets/framecolor/
   FC_HERO_B64:  "framecolor/hero.jpg",
-  FC_SHOT1_B64: "framecolor/shot1.jpg",
-  FC_SHOT2_B64: "framecolor/shot2.jpg",
 };
 
 // LINKED assets: the placeholder becomes a relative URL instead of base64, so
@@ -67,6 +53,20 @@ const LINKED = {
   IR_CLIP:   "clips/idlerunner.mp4",
 
   // modal gallery shots
+  SHOT1_B64:       "cosmeow/shot1.jpg",
+  SHOT2_B64:       "cosmeow/shot2.jpg",
+  SHOT3_B64:       "cosmeow/shot3.jpg",
+  SHOT4_B64:       "cosmeow/shot4.jpg",
+  SHOT5_B64:       "cosmeow/shot5.jpg",
+  RN_SHOT1_B64:    "railnation/shot1.jpg",
+  RN_SHOT2_B64:    "railnation/shot2.jpg",
+  RN_SHOT3_B64:    "railnation/shot3.jpg",
+  RN_SHOT4_B64:    "railnation/shot4.jpg",
+  LOTK_SHOT1_B64:  "lotk/shot1.jpg",
+  LOTK_SHOT2_B64:  "lotk/shot2.jpg",
+  LOTK_SHOT3_B64:  "lotk/shot3.jpg",
+  FC_SHOT1_B64:    "framecolor/shot1.jpg",
+  FC_SHOT2_B64:    "framecolor/shot2.jpg",
   BD_SHOT1: "battleday/shot1.jpg",
   BD_SHOT2: "battleday/shot2.jpg",
   BD_SHOT3: "battleday/shot3.jpg",
