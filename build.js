@@ -29,11 +29,27 @@ const IMAGES = {
   RN_SHOT3_B64: "railnation/shot3.jpg",
   RN_SHOT4_B64: "railnation/shot4.jpg",
 
+  AVATAR_B64: "avatar.jpg",
+
+  // Card hover clips — produced by make-clips.js from raw recordings in clips/
+  LOTK_CLIP: "clips/lotk.mp4",
+  FC_CLIP:   "clips/framecolor.mp4",
+  CM_CLIP:   "clips/cosmeow.mp4",
+  RN_CLIP:   "clips/railnation.mp4",
+  BD_CLIP:   "clips/battleday.mp4",
+  RACE_CLIP: "clips/racing.mp4",
+
   // Lord of the Kings (working title) — drop PNG/JPGs in assets/lotk/
   LOTK_HERO_B64:  "lotk/hero.jpg",
   LOTK_SHOT1_B64: "lotk/shot1.jpg",
   LOTK_SHOT2_B64: "lotk/shot2.jpg",
   LOTK_SHOT3_B64: "lotk/shot3.jpg",
+
+  // BattleDay (Part Games) — drop JPGs in assets/battleday/
+  BD_HERO_B64:   "battleday/hero.jpg",
+  RACE_HERO_B64: "racing/hero.jpg",
+  DV_HERO_B64:   "divar/hero.jpg",
+  VC_HERO_B64:   "voice/hero.jpg",
 
   // Frame Coloring V2 — drop PNGs in assets/framecolor/
   FC_HERO_B64:  "framecolor/hero.jpg",
@@ -43,11 +59,14 @@ const IMAGES = {
 
 // non-image files inlined as base64 too (CV download)
 const FILES = {
-  CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV.docx"),
+  CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV.pdf"),
 };
 
 // keys allowed to be missing — the build warns instead of leaving a hole
 const OPTIONAL = new Set([
+  "AVATAR_B64",
+  "LOTK_CLIP", "FC_CLIP", "CM_CLIP", "RN_CLIP", "BD_CLIP", "RACE_CLIP",
+  "BD_HERO_B64", "RACE_HERO_B64", "DV_HERO_B64", "VC_HERO_B64",
   "LOTK_HERO_B64", "LOTK_SHOT1_B64", "LOTK_SHOT2_B64", "LOTK_SHOT3_B64",
   "FC_HERO_B64", "FC_SHOT1_B64", "FC_SHOT2_B64",
 ]);

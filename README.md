@@ -12,8 +12,31 @@ or a double-click.
 node build.js
 ```
 
-The script inlines everything in `assets/` plus the résumé from `../Sadra_Delir_CV.docx`,
+The script inlines everything in `assets/` plus the résumé from `../Sadra_Delir_CV.pdf`,
 and reports anything missing.
+
+### Résumé
+
+The site embeds the **PDF**. It is generated in two steps from the parent folder:
+
+```bash
+node build_cv.js      # authors Sadra_Delir_CV.docx
+./make-cv-pdf.ps1     # converts it to .pdf via the installed Word
+```
+
+Re-run `node build.js` afterwards, or the site keeps serving the old résumé.
+
+### Card clips
+
+`make-clips.js` turns raw screen recordings in `clips/` (git-ignored) into small
+silent looping MP4s in `assets/clips/`, named `lotk`, `framecolor`, `cosmeow`,
+`railnation`. They play on hover, or when scrolled into view on touch devices.
+
+```bash
+node make-clips.js && node build.js
+```
+
+It needs ffmpeg — `npm i ffmpeg-static`, or set `FFMPEG_PATH`.
 
 ### Template placeholders
 

@@ -1,5 +1,6 @@
-# original, unoptimised screenshots — assets/ holds the compressed versions
-images/
+# raw source media — assets/ holds the compressed versions that ship
+/images/
+/clips/
 
 node_modules/
 .DS_Store
