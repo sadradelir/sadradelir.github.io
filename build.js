@@ -50,12 +50,14 @@ const IMAGES = {
   FC_SHOT2_B64: "framecolor/shot2.jpg",
 };
 
-// Card hover clips — produced by make-clips.js from raw recordings in clips/.
-// These are LINKED, not inlined: the placeholder becomes a relative URL, so the
-// browser only fetches a clip when the pointer reaches its card (preload="none").
-// Inlining them would drag every video into the first page load. Their <!--IF-->
-// blocks still work, so a card with no clip renders as a plain still.
-const CLIPS = {
+// LINKED assets: the placeholder becomes a relative URL instead of base64, so
+// the browser fetches the file only when it is actually needed — a clip when the
+// pointer reaches its card (preload="none"), a gallery shot when its modal
+// opens. Both are things most visitors never do, and inlining them would put the
+// whole lot in front of everyone on first load. Their <!--IF--> blocks still
+// work, so a card with no clip renders as a plain still.
+const LINKED = {
+  // card hover clips — produced by make-clips.js from recordings in clips/
   LOTK_CLIP: "clips/lotk.mp4",
   FC_CLIP:   "clips/framecolor.mp4",
   CM_CLIP:   "clips/cosmeow.mp4",
@@ -63,6 +65,16 @@ const CLIPS = {
   BD_CLIP:   "clips/battleday.mp4",
   RACE_CLIP: "clips/racing.mp4",
   IR_CLIP:   "clips/idlerunner.mp4",
+
+  // modal gallery shots
+  BD_SHOT1: "battleday/shot1.jpg",
+  BD_SHOT2: "battleday/shot2.jpg",
+  BD_SHOT3: "battleday/shot3.jpg",
+  BD_SHOT4: "battleday/shot4.jpg",
+  BD_SHOT5: "battleday/shot5.jpg",
+  IR_SHOT1: "idlerunner/shot1.jpg",
+  IR_SHOT2: "idlerunner/shot2.jpg",
+  IR_SHOT3: "idlerunner/shot3.jpg",
 };
 
 // non-image files inlined as base64 too (CV download)
@@ -75,6 +87,8 @@ const OPTIONAL = new Set([
   "AVATAR_B64",
   "LOTK_CLIP", "FC_CLIP", "CM_CLIP", "RN_CLIP", "BD_CLIP", "RACE_CLIP",
   "BD_HERO_B64", "RACE_HERO_B64", "DV_HERO_B64", "VC_HERO_B64", "IR_HERO_B64", "IR_CLIP",
+  "BD_SHOT1", "BD_SHOT2", "BD_SHOT3", "BD_SHOT4", "BD_SHOT5",
+  "IR_SHOT1", "IR_SHOT2", "IR_SHOT3",
   "LOTK_HERO_B64", "LOTK_SHOT1_B64", "LOTK_SHOT2_B64", "LOTK_SHOT3_B64",
   "FC_HERO_B64", "FC_SHOT1_B64", "FC_SHOT2_B64",
 ]);
@@ -115,7 +129,7 @@ for (const [key, file] of Object.entries(FILES)) {
   if (fs.existsSync(file)) { present.add(key); inlined[key] = file; }
   else missing.push(file);
 }
-for (const [key, rel] of Object.entries(CLIPS)) {
+for (const [key, rel] of Object.entries(LINKED)) {
   const file = path.join(ASSETS, rel);
   if (fs.existsSync(file)) {
     present.add(key);
@@ -150,5 +164,5 @@ console.log(
   (required.length ? `  [${required.length} required asset(s) missing]` : "")
 );
 if (clipCount) {
-  console.log(`  + ${clipCount} clip(s), ${mb(linkedBytes)}, fetched on hover — not in that figure`);
+  console.log(`  + ${clipCount} linked file(s), ${mb(linkedBytes)}, fetched on demand — not in that figure`);
 }
