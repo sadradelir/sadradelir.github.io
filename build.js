@@ -31,15 +31,6 @@ const IMAGES = {
 
   AVATAR_B64: "avatar.jpg",
 
-  // Card hover clips — produced by make-clips.js from raw recordings in clips/
-  LOTK_CLIP: "clips/lotk.mp4",
-  FC_CLIP:   "clips/framecolor.mp4",
-  CM_CLIP:   "clips/cosmeow.mp4",
-  RN_CLIP:   "clips/railnation.mp4",
-  BD_CLIP:   "clips/battleday.mp4",
-  RACE_CLIP: "clips/racing.mp4",
-  IR_CLIP:   "clips/idlerunner.mp4",
-
   // Lord of the Kings (working title) — drop PNG/JPGs in assets/lotk/
   LOTK_HERO_B64:  "lotk/hero.jpg",
   LOTK_SHOT1_B64: "lotk/shot1.jpg",
@@ -57,6 +48,21 @@ const IMAGES = {
   FC_HERO_B64:  "framecolor/hero.jpg",
   FC_SHOT1_B64: "framecolor/shot1.jpg",
   FC_SHOT2_B64: "framecolor/shot2.jpg",
+};
+
+// Card hover clips — produced by make-clips.js from raw recordings in clips/.
+// These are LINKED, not inlined: the placeholder becomes a relative URL, so the
+// browser only fetches a clip when the pointer reaches its card (preload="none").
+// Inlining them would drag every video into the first page load. Their <!--IF-->
+// blocks still work, so a card with no clip renders as a plain still.
+const CLIPS = {
+  LOTK_CLIP: "clips/lotk.mp4",
+  FC_CLIP:   "clips/framecolor.mp4",
+  CM_CLIP:   "clips/cosmeow.mp4",
+  RN_CLIP:   "clips/railnation.mp4",
+  BD_CLIP:   "clips/battleday.mp4",
+  RACE_CLIP: "clips/racing.mp4",
+  IR_CLIP:   "clips/idlerunner.mp4",
 };
 
 // non-image files inlined as base64 too (CV download)
@@ -96,21 +102,36 @@ let html = fs.readFileSync(path.join(ROOT, "template.html"), "utf8");
 
 const present = new Set();
 const missing = [];
-const resolved = {};
+const inlined = {};   // key -> file to base64
+const linked = {};    // key -> relative URL to leave as a link
+let inlineBytes = 0, linkedBytes = 0;
 
 for (const [key, rel] of Object.entries(IMAGES)) {
   const file = path.join(ASSETS, rel);
-  if (fs.existsSync(file)) { present.add(key); resolved[key] = file; }
+  if (fs.existsSync(file)) { present.add(key); inlined[key] = file; }
   else missing.push(`${rel}${OPTIONAL.has(key) ? "  (optional)" : ""}`);
 }
 for (const [key, file] of Object.entries(FILES)) {
-  if (fs.existsSync(file)) { present.add(key); resolved[key] = file; }
+  if (fs.existsSync(file)) { present.add(key); inlined[key] = file; }
   else missing.push(file);
+}
+for (const [key, rel] of Object.entries(CLIPS)) {
+  const file = path.join(ASSETS, rel);
+  if (fs.existsSync(file)) {
+    present.add(key);
+    linked[key] = `assets/${rel}`;
+    linkedBytes += fs.statSync(file).size;
+  } else missing.push(`${rel}${OPTIONAL.has(key) ? "  (optional)" : ""}`);
 }
 
 html = resolveConditionals(html, present);
-for (const [key, file] of Object.entries(resolved)) {
-  if (html.includes(`{{${key}}}`)) html = html.split(`{{${key}}}`).join(b64(file));
+for (const [key, file] of Object.entries(inlined)) {
+  if (!html.includes(`{{${key}}}`)) continue;
+  inlineBytes += fs.statSync(file).size;
+  html = html.split(`{{${key}}}`).join(b64(file));
+}
+for (const [key, url] of Object.entries(linked)) {
+  html = html.split(`{{${key}}}`).join(url);
 }
 
 const required = missing.filter((m) => !m.endsWith("(optional)"));
@@ -121,7 +142,13 @@ if (left) console.warn("unresolved placeholders: " + [...new Set(left)].join(", 
 
 const out = path.join(ROOT, "index.html");
 fs.writeFileSync(out, html);
+
+const mb = (n) => (n / 1024 / 1024).toFixed(2) + " MB";
+const clipCount = Object.keys(linked).length;
 console.log(
-  `built ${path.relative(ROOT, out)} — ${(fs.statSync(out).size / 1024 / 1024).toFixed(2)} MB` +
+  `built ${path.relative(ROOT, out)} — ${mb(fs.statSync(out).size)} on first load` +
   (required.length ? `  [${required.length} required asset(s) missing]` : "")
 );
+if (clipCount) {
+  console.log(`  + ${clipCount} clip(s), ${mb(linkedBytes)}, fetched on hover — not in that figure`);
+}
