@@ -421,9 +421,9 @@
         <!--IF:PR_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="{{PR_CLIP}}"></video><!--ENDIF-->
       </div>
       <div class="card-body">
-        <div class="card-tag"><span>BRIGHT FUTURE · R&amp;D</span><span>2022–25</span></div>
+        <div class="card-tag"><span>TRAVIAN GAMES · NEW GAMES</span><span>2022–25</span></div>
         <div class="card-title">Prototyping</div>
-        <div class="card-tagline">Answering "would this be fun?" before anyone commits a year to it.</div>
+        <div class="card-tagline">One week to find out whether an idea is a game.</div>
       </div>
     </button>
   </div>
@@ -691,20 +691,27 @@
 
 <template id="detail-prototyping">
   <div class="build-bar">
-    <span>STUDIO WORK <span class="mono">· Bright Future GmbH</span></span>
+    <span>STUDIO WORK <span class="mono">· Bright Future Studio / Travian Games</span></span>
     <span>2022 – 2025</span>
   </div>
-  <!--IF:PR_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{PR_HERO_B64}}" alt="Prototype work at Bright Future"><!--ENDIF-->
+  <!--IF:PR_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{PR_HERO_B64}}" alt="Prototype work at New Games"><!--ENDIF-->
   <div class="build-body">
-    <div class="build-title">Prototyping</div>
-    <div class="build-tagline">Answering "would this be fun?" before anyone commits a year to it.</div>
-    <div class="build-desc">As technical lead at Bright Future I built a run of prototypes: small, fast, deliberately disposable builds made to settle a question about a mechanic, a control scheme or a piece of tech while it was still cheap to be wrong.</div>
+    <div class="build-title">Prototyping <span class="wt">(New Games)</span></div>
+    <div class="build-tagline">One week to find out whether an idea is a game.</div>
+    <div class="build-desc">Travian Games wanted to invest in a new mobile title and set up a department to find one. They pulled together the people in the company who knew Unity, called it New Games, and gave it a brief: online, multiplayer, strategy-leaning. I was its technical lead, which meant owning every technical question between an idea on a whiteboard and something you could hold in your hand and play.</div>
     <div class="stat-rail">
       <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
       <div><div class="k">Role</div><div class="v">Technical lead</div></div>
-      <div><div class="k">Studio</div><div class="v">Bright Future</div></div>
-      <div><div class="k">Period</div><div class="v">2022 – 2025</div></div>
+      <div><div class="k">Built</div><div class="v">36 prototypes</div></div>
+      <div><div class="k">Per build</div><div class="v">1 week</div></div>
     </div>
+    <ul class="highlights">
+      <li><strong>36 prototypes. 10 reached internal playtest. 2 were carried far enough for the company to weigh investing. 1 was built out into a finished product</strong>, which was then shelved at the marketing stage when other titles took priority, kept on ice rather than killed.</li>
+      <li><strong>The pipeline.</strong> Everyone pitched, the team filtered against the brief, then a designer took a surviving idea and specified one playable core loop. I picked it up myself or paired with whoever did, and a week later it was an Android and iOS build somebody could actually play. An idea you cannot hand to a person on a phone has not been tested.</li>
+      <li><strong>A week is not long for what we kept attempting</strong>: a real-time strategy game on mobile, real-time online multiplayer (which meant standing up a disposable server inside the same week so two people could meet in a match), physics-driven combat, card strategy, RPG, and mechanics built on time manipulation. One was an army game where you fire your soldiers at the enemy instead of resolving the fight in logic.</li>
+      <li><strong>Technical feasibility was the job before the code was.</strong> Can this be done, what would it cost, will it survive a phone. The experience to answer that quickly is what kept the team from spending a week discovering a wall, and saying yes meant going and proving it.</li>
+      <li><strong>When a prototype was promoted, the work changed shape.</strong> Taking a week-old build to something real players could sit down with took about a month. We brought players into the office, said plainly that this was a test and not a finished game, and I sat behind them fixing whatever broke while designers watched the experience.</li>
+    </ul>
     <!--IF:PR_SHOT1-->
     <div class="gallery">
       <img src="{{PR_SHOT1}}" alt="Prototype 1">
@@ -713,6 +720,7 @@
       <!--IF:PR_SHOT4--><img src="{{PR_SHOT4}}" alt="Prototype 4"><!--ENDIF-->
     </div>
     <!--ENDIF-->
+    <div class="build-note">Most of these never left the building, so there is nothing to link. Screenshots and clips are going up here as I dig them out.</div>
   </div>
 </template>
 
