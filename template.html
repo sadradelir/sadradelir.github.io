@@ -400,6 +400,32 @@
         <div class="card-tagline">Keeping a decade-old railroad empire running for thousands of players.</div>
       </div>
     </button>
+
+    <button class="card reveal" data-target="detail-palgam">
+      <div class="card-media">
+        <!--IF:PG_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{PG_HERO_B64}}" alt="Palgam backgammon match"><!--ENDIF-->
+        <!--IFNOT:PG_HERO_B64--><div class="card-plate"><span>PALGAM</span></div><!--ENDIF-->
+        <!--IF:PG_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="{{PG_CLIP}}"></video><!--ENDIF-->
+      </div>
+      <div class="card-body">
+        <div class="card-tag"><span>CLIENT &amp; SERVER</span><span class="live">● LIVE</span></div>
+        <div class="card-title">Palgam</div>
+        <div class="card-tagline">Skill games played for real stakes, against real people.</div>
+      </div>
+    </button>
+
+    <button class="card reveal" data-target="detail-prototyping">
+      <div class="card-media">
+        <!--IF:PR_HERO_B64--><img class="card-thumb" src="data:image/jpeg;base64,{{PR_HERO_B64}}" alt="Prototype work at Bright Future"><!--ENDIF-->
+        <!--IFNOT:PR_HERO_B64--><div class="card-plate"><span>PROTO</span></div><!--ENDIF-->
+        <!--IF:PR_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="{{PR_CLIP}}"></video><!--ENDIF-->
+      </div>
+      <div class="card-body">
+        <div class="card-tag"><span>BRIGHT FUTURE · R&amp;D</span><span>2022–25</span></div>
+        <div class="card-title">Prototyping</div>
+        <div class="card-tagline">Answering "would this be fun?" before anyone commits a year to it.</div>
+      </div>
+    </button>
   </div>
 </section>
 
@@ -625,6 +651,69 @@
 </footer>
 
 <!-- ===== detail templates (hidden; cloned into the modal on click) ===== -->
+<template id="detail-palgam">
+  <div class="build-bar">
+    <span>STUDIO WORK <span class="mono">· Unity client + C# server</span></span>
+    <span class="tag-live">● LIVE ON BOTH STORES</span>
+  </div>
+  <!--IF:PG_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{PG_HERO_B64}}" alt="Palgam backgammon match"><!--ENDIF-->
+  <div class="build-body">
+    <div class="build-title">Palgam</div>
+    <div class="build-tagline">Skill games played for real stakes, against real people.</div>
+    <div class="build-desc">A mobile platform where two players are matched head to head at backgammon, table soccer or 8-ball, with the outcome settling a stake between them. I built it end to end: the Unity app and the C# game server behind it.</div>
+    <div class="stat-rail">
+      <div><div class="k">Client</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Server</div><div class="v">C#</div></div>
+      <div><div class="k">Role</div><div class="v">Sole developer</div></div>
+      <div><div class="k">Platforms</div><div class="v">iOS · Android</div></div>
+    </div>
+    <ul class="highlights">
+      <li><strong>Built the whole app from zero</strong> — UI and screen flow, all three games, and every call it makes to the server.</li>
+      <li><strong>Wrote the game server too</strong>, in C#. Owning both ends meant the protocol could be designed once rather than negotiated between two teams.</li>
+      <li><strong>Anti-cheat.</strong> When a match decides who keeps the money, a client that can lie about the board is the whole product's problem — so the server holds the truth and the client only asks.</li>
+      <li>Real-time play against a matched opponent, with in-match chat and voice, turn timers and rematch flow.</li>
+      <li>Three complete games on one shared match, staking and presence layer — each with its own rules engine, feel and input model.</li>
+    </ul>
+    <!--IF:PG_SHOT1-->
+    <div class="gallery">
+      <img width="1387" height="640" src="{{PG_SHOT1}}" alt="Palgam backgammon match">
+      <!--IF:PG_SHOT2--><img width="295" height="640" src="{{PG_SHOT2}}" alt="Palgam table soccer match"><!--ENDIF-->
+      <!--IF:PG_SHOT3--><img width="1387" height="640" src="{{PG_SHOT3}}" alt="Palgam 8-ball match"><!--ENDIF-->
+    </div>
+    <!--ENDIF-->
+    <div class="build-links">
+      <a class="btn" href="https://palgam.com/" target="_blank" rel="noopener">palgam.com ↗</a>
+    </div>
+  </div>
+</template>
+
+<template id="detail-prototyping">
+  <div class="build-bar">
+    <span>STUDIO WORK <span class="mono">· Bright Future GmbH</span></span>
+    <span>2022 — 2025</span>
+  </div>
+  <!--IF:PR_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{PR_HERO_B64}}" alt="Prototype work at Bright Future"><!--ENDIF-->
+  <div class="build-body">
+    <div class="build-title">Prototyping</div>
+    <div class="build-tagline">Answering "would this be fun?" before anyone commits a year to it.</div>
+    <div class="build-desc">As technical lead at Bright Future I built a run of prototypes — small, fast, deliberately disposable builds made to settle a question about a mechanic, a control scheme or a piece of tech while it was still cheap to be wrong.</div>
+    <div class="stat-rail">
+      <div><div class="k">Engine</div><div class="v">Unity / C#</div></div>
+      <div><div class="k">Role</div><div class="v">Technical lead</div></div>
+      <div><div class="k">Studio</div><div class="v">Bright Future</div></div>
+      <div><div class="k">Period</div><div class="v">2022 — 2025</div></div>
+    </div>
+    <!--IF:PR_SHOT1-->
+    <div class="gallery">
+      <img src="{{PR_SHOT1}}" alt="Prototype 1">
+      <!--IF:PR_SHOT2--><img src="{{PR_SHOT2}}" alt="Prototype 2"><!--ENDIF-->
+      <!--IF:PR_SHOT3--><img src="{{PR_SHOT3}}" alt="Prototype 3"><!--ENDIF-->
+      <!--IF:PR_SHOT4--><img src="{{PR_SHOT4}}" alt="Prototype 4"><!--ENDIF-->
+    </div>
+    <!--ENDIF-->
+  </div>
+</template>
+
 <template id="detail-lotk">
   <div class="build-bar">
     <span>BUILD 02 <span class="mono">· Unity 6 · solo</span></span>

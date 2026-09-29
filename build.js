@@ -31,6 +31,8 @@ const IMAGES = {
   DV_HERO_B64:   "divar/hero.jpg",
   VC_HERO_B64:   "voice/hero.jpg",
   IR_HERO_B64:   "idlerunner/hero.jpg",
+  PG_HERO_B64:   "palgam/hero.jpg",
+  PR_HERO_B64:   "prototyping/hero.jpg",
 
   // Frame Coloring V2 — drop PNGs in assets/framecolor/
   FC_HERO_B64:  "framecolor/hero.jpg",
@@ -51,6 +53,8 @@ const LINKED = {
   BD_CLIP:   "clips/battleday.mp4",
   RACE_CLIP: "clips/racing.mp4",
   IR_CLIP:   "clips/idlerunner.mp4",
+  PG_CLIP:   "clips/palgam.mp4",
+  PR_CLIP:   "clips/prototyping.mp4",
 
   // modal gallery shots
   SHOT1_B64:       "cosmeow/shot1.jpg",
@@ -67,6 +71,14 @@ const LINKED = {
   LOTK_SHOT3_B64:  "lotk/shot3.jpg",
   FC_SHOT1_B64:    "framecolor/shot1.jpg",
   FC_SHOT2_B64:    "framecolor/shot2.jpg",
+  PG_SHOT1: "palgam/shot1.jpg",
+  PG_SHOT2: "palgam/shot2.jpg",
+  PG_SHOT3: "palgam/shot3.jpg",
+  PR_SHOT1: "prototyping/shot1.jpg",
+  PR_SHOT2: "prototyping/shot2.jpg",
+  PR_SHOT3: "prototyping/shot3.jpg",
+  PR_SHOT4: "prototyping/shot4.jpg",
+
   BD_SHOT1: "battleday/shot1.jpg",
   BD_SHOT2: "battleday/shot2.jpg",
   BD_SHOT3: "battleday/shot3.jpg",
@@ -89,6 +101,8 @@ const OPTIONAL = new Set([
   "BD_HERO_B64", "RACE_HERO_B64", "DV_HERO_B64", "VC_HERO_B64", "IR_HERO_B64", "IR_CLIP",
   "BD_SHOT1", "BD_SHOT2", "BD_SHOT3", "BD_SHOT4", "BD_SHOT5",
   "IR_SHOT1", "IR_SHOT2", "IR_SHOT3",
+  "PG_HERO_B64", "PG_CLIP", "PG_SHOT1", "PG_SHOT2", "PG_SHOT3",
+  "PR_HERO_B64", "PR_CLIP", "PR_SHOT1", "PR_SHOT2", "PR_SHOT3", "PR_SHOT4",
   "LOTK_HERO_B64", "LOTK_SHOT1_B64", "LOTK_SHOT2_B64", "LOTK_SHOT3_B64",
   "FC_HERO_B64", "FC_SHOT1_B64", "FC_SHOT2_B64",
 ]);
