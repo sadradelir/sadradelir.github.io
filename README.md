@@ -9,7 +9,7 @@ reaches its card (`preload="none"`), a gallery when its modal opens. Inlining
 them put ~2.9 MB in front of every visitor, including phone visitors who have no
 pointer to hover with and may never open a card at all.
 
-What stays inlined is what the first screen actually shows — the card covers,
+What stays inlined is what the first screen actually shows: the card covers,
 the avatar and the résumé. Keep `assets/` next to `index.html` and the page still
 works from a plain folder or a USB stick.
 
@@ -50,7 +50,7 @@ silent looping MP4s in `assets/clips/`, named `lotk`, `framecolor`, `cosmeow`,
 node make-clips.js && node build.js
 ```
 
-It needs ffmpeg — `npm i ffmpeg-static`, or set `FFMPEG_PATH`. Each entry in the
+It needs ffmpeg (`npm i ffmpeg-static`, or set `FFMPEG_PATH`). Each entry in the
 script's `KEYS` map lists the filenames it accepts (case and separators are
 ignored) and may set its own `from` / `seconds` trim window.
 
@@ -65,7 +65,7 @@ it is obvious which one a change moved.
 | `<!--IF:KEY--> … <!--ENDIF-->` | kept only when the asset exists |
 | `<!--IFNOT:KEY--> … <!--ENDIF-->` | kept only when it does not |
 
-Keys in `OPTIONAL` may be absent — the build still succeeds and the card falls
+Keys in `OPTIONAL` may be absent, and the build still succeeds and the card falls
 back to a text-only layout. That is how the project cards stay valid before
 their screenshots exist. Conditionals nest.
 

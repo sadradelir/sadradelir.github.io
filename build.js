@@ -6,7 +6,7 @@
 //   <!--IF:KEY-->    ... <!--ENDIF-->    kept only when that asset exists
 //   <!--IFNOT:KEY--> ... <!--ENDIF-->    kept only when it does NOT exist
 //
-// Assets listed in OPTIONAL may be absent — their IF blocks are dropped and the
+// Assets listed in OPTIONAL may be absent: their IF blocks are dropped and the
 // build still succeeds, so a card can fall back to a text-only layout until the
 // screenshots land on disk.
 const fs = require("fs");
@@ -22,10 +22,10 @@ const IMAGES = {
 
   AVATAR_B64: "avatar.jpg",
 
-  // Lord of the Kings (working title) — drop PNG/JPGs in assets/lotk/
+  // Lord of the Kings (working title): drop PNG/JPGs in assets/lotk/
   LOTK_HERO_B64:  "lotk/hero.jpg",
 
-  // BattleDay (Part Games) — drop JPGs in assets/battleday/
+  // BattleDay (Part Games): drop JPGs in assets/battleday/
   BD_HERO_B64:   "battleday/hero.jpg",
   RACE_HERO_B64: "racing/hero.jpg",
   DV_HERO_B64:   "divar/hero.jpg",
@@ -34,18 +34,18 @@ const IMAGES = {
   PG_HERO_B64:   "palgam/hero.jpg",
   PR_HERO_B64:   "prototyping/hero.jpg",
 
-  // Frame Coloring V2 — drop PNGs in assets/framecolor/
+  // Frame Coloring V2: drop PNGs in assets/framecolor/
   FC_HERO_B64:  "framecolor/hero.jpg",
 };
 
 // LINKED assets: the placeholder becomes a relative URL instead of base64, so
-// the browser fetches the file only when it is actually needed — a clip when the
+// the browser fetches the file only when it is actually needed: a clip when the
 // pointer reaches its card (preload="none"), a gallery shot when its modal
 // opens. Both are things most visitors never do, and inlining them would put the
 // whole lot in front of everyone on first load. Their <!--IF--> blocks still
 // work, so a card with no clip renders as a plain still.
 const LINKED = {
-  // card hover clips — produced by make-clips.js from recordings in clips/
+  // card hover clips, produced by make-clips.js from recordings in clips/
   LOTK_CLIP: "clips/lotk.mp4",
   FC_CLIP:   "clips/framecolor.mp4",
   CM_CLIP:   "clips/cosmeow.mp4",
@@ -94,7 +94,7 @@ const FILES = {
   CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV.pdf"),
 };
 
-// keys allowed to be missing — the build warns instead of leaving a hole
+// keys allowed to be missing; the build warns instead of leaving a hole
 const OPTIONAL = new Set([
   "AVATAR_B64",
   "LOTK_CLIP", "FC_CLIP", "CM_CLIP", "RN_CLIP", "BD_CLIP", "RACE_CLIP",
@@ -111,9 +111,11 @@ const b64 = (file) => fs.readFileSync(file).toString("base64");
 
 // Resolve <!--IF:KEY--> / <!--IFNOT:KEY--> ... <!--ENDIF--> against `present`.
 // Blocks nest, so collapse the innermost ones (those containing no further IF
-// or ENDIF marker) and repeat until nothing changes.
+// or ENDIF marker) and repeat until nothing changes. The regex is global, so a
+// pass clears every innermost block rather than one: passes then bound nesting
+// depth, not the number of conditionals in the file.
 function resolveConditionals(html, present) {
-  const innermost = /<!--IF(NOT)?:([A-Z0-9_]+)-->((?:(?!<!--IF(?:NOT)?:|<!--ENDIF-->)[\s\S])*)<!--ENDIF-->/;
+  const innermost = /<!--IF(NOT)?:([A-Z0-9_]+)-->((?:(?!<!--IF(?:NOT)?:|<!--ENDIF-->)[\s\S])*)<!--ENDIF-->/g;
   for (let pass = 0; pass < 50; pass++) {
     const next = html.replace(innermost, (_, not, key, inner) =>
       present.has(key) === !not ? inner : ""
@@ -174,9 +176,9 @@ fs.writeFileSync(out, html);
 const mb = (n) => (n / 1024 / 1024).toFixed(2) + " MB";
 const clipCount = Object.keys(linked).length;
 console.log(
-  `built ${path.relative(ROOT, out)} — ${mb(fs.statSync(out).size)} on first load` +
+  `built ${path.relative(ROOT, out)}, ${mb(fs.statSync(out).size)} on first load` +
   (required.length ? `  [${required.length} required asset(s) missing]` : "")
 );
 if (clipCount) {
-  console.log(`  + ${clipCount} linked file(s), ${mb(linkedBytes)}, fetched on demand — not in that figure`);
+  console.log(`  + ${clipCount} linked file(s), ${mb(linkedBytes)}, fetched on demand, not in that figure`);
 }

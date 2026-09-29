@@ -3,7 +3,7 @@
 //   node make-clips.js
 //
 // Reads any video in clips/ named after a card key (lotk, framecolor, cosmeow,
-// railnation) with any extension — .mp4, .mov, .mkv, .webm, .gif — and writes
+// railnation) with any extension (.mp4, .mov, .mkv, .webm, .gif) and writes
 // assets/clips/<key>.mp4, sized for the card thumbnail. Audio is dropped, the
 // file is made web-streamable (moov atom first) and trimmed to CLIP_SECONDS.
 //
@@ -46,7 +46,7 @@ function ffmpegPath() {
 
 const FFMPEG = ffmpegPath();
 
-// Match any accepted alias, ignoring case and separators — "FrameColoring.mp4",
+// Match any accepted alias, ignoring case and separators: "FrameColoring.mp4",
 // "frame-coloring.MOV" and "framecolor.mp4" all resolve to the framecolor clip.
 const norm = (s) => s.toLowerCase().replace(/[\s_-]/g, "");
 
@@ -80,7 +80,7 @@ function encode(src, dst, { from = 0, seconds = CLIP_SECONDS } = {}) {
 }
 
 if (!fs.existsSync(IN_DIR)) {
-  console.error(`no clips/ folder — create ${path.relative(ROOT, IN_DIR)} and drop recordings in it,`);
+  console.error(`no clips/ folder, create ${path.relative(ROOT, IN_DIR)} and drop recordings in it,`);
   console.error(`named ${Object.keys(KEYS).join(", ")} (any video extension).`);
   process.exit(1);
 }
@@ -89,7 +89,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 let made = 0;
 for (const [key, spec] of Object.entries(KEYS)) {
   const src = findSource(spec.alias);
-  if (!src) { console.log(`${key.padEnd(12)} — no source, skipped`); continue; }
+  if (!src) { console.log(`${key.padEnd(12)} no source, skipped`); continue; }
   const dst = path.join(OUT_DIR, key + ".mp4");
   const secs = spec.seconds ?? CLIP_SECONDS;
   encode(src, dst, { from: spec.from ?? 0, seconds: secs });
@@ -102,4 +102,4 @@ for (const [key, spec] of Object.entries(KEYS)) {
   made++;
 }
 
-console.log(made ? `\n${made} clip(s) written to assets/clips — now run: node build.js` : "\nnothing to do");
+console.log(made ? `\n${made} clip(s) written to assets/clips, now run: node build.js` : "\nnothing to do");
