@@ -387,7 +387,7 @@
 
 <section id="work">
   <div class="section-label">Studio work</div>
-  <div class="section-note">Live titles I've worked on as an employee, shown here with the studio's permission.</div>
+  <div class="section-note">Live titles built for an employer or a client, shown here with their permission.</div>
 
   <div class="card-grid">
     <button class="card reveal" data-target="detail-railnation">
@@ -408,7 +408,7 @@
         <!--IF:PG_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="{{PG_CLIP}}"></video><!--ENDIF-->
       </div>
       <div class="card-body">
-        <div class="card-tag"><span>CLIENT &amp; SERVER</span><span class="live">● LIVE</span></div>
+        <div class="card-tag"><span>UNITY · C# SERVER</span><span class="live">● LIVE</span></div>
         <div class="card-title">Palgam</div>
         <div class="card-tagline">Skill games played for real stakes, against real people.</div>
       </div>
@@ -653,26 +653,28 @@
 <!-- ===== detail templates (hidden; cloned into the modal on click) ===== -->
 <template id="detail-palgam">
   <div class="build-bar">
-    <span>STUDIO WORK <span class="mono">· Unity client + C# server</span></span>
+    <span>CLIENT WORK <span class="mono">· Palgam</span></span>
     <span class="tag-live">● LIVE ON BOTH STORES</span>
   </div>
   <!--IF:PG_HERO_B64--><img class="build-hero" src="data:image/jpeg;base64,{{PG_HERO_B64}}" alt="Palgam backgammon match"><!--ENDIF-->
   <div class="build-body">
     <div class="build-title">Palgam</div>
     <div class="build-tagline">Skill games played for real stakes, against real people.</div>
-    <div class="build-desc">A mobile platform where two players are matched head to head at backgammon, table soccer or 8-ball, with the outcome settling a stake between them. I built it end to end: the Unity app and the C# game server behind it.</div>
+    <div class="build-desc">A mobile platform where two players are matched head to head at backgammon, table soccer or 8-ball, with the outcome settling a stake between them. I stood the product up on my own — the Unity app and the C# game server — then led development as the team grew around it: DevOps, VFX and blockchain engineers joined once it was running.</div>
     <div class="stat-rail">
       <div><div class="k">Client</div><div class="v">Unity / C#</div></div>
       <div><div class="k">Server</div><div class="v">C#</div></div>
-      <div><div class="k">Role</div><div class="v">Sole developer</div></div>
+      <div><div class="k">Role</div><div class="v">Lead developer</div></div>
       <div><div class="k">Platforms</div><div class="v">iOS · Android</div></div>
     </div>
     <ul class="highlights">
-      <li><strong>Built the whole app from zero</strong> — UI and screen flow, all three games, and every call it makes to the server.</li>
+      <li><strong>Took the app from nothing to shipped</strong> — UI and screen flow, all three games, and every call the client makes to the server.</li>
       <li><strong>Wrote the game server too</strong>, in C#. Owning both ends meant the protocol could be designed once rather than negotiated between two teams.</li>
+      <li><strong>Wallet and chain calls on the client.</strong> Integrated the blockchain SDKs into Unity: generating a player's wallet in-app, signing and issuing calls, and rendering transfer QR codes — the seam between a game loop and a ledger, on the side the player actually touches.</li>
       <li><strong>Anti-cheat.</strong> When a match decides who keeps the money, a client that can lie about the board is the whole product's problem — so the server holds the truth and the client only asks.</li>
       <li>Real-time play against a matched opponent, with in-match chat and voice, turn timers and rematch flow.</li>
       <li>Three complete games on one shared match, staking and presence layer — each with its own rules engine, feel and input model.</li>
+      <li>Led the work as it outgrew one developer, setting the technical direction alongside the DevOps, VFX and blockchain specialists who came on later. The smart contracts were theirs; the client that talks to them was mine.</li>
     </ul>
     <!--IF:PG_SHOT1-->
     <div class="gallery">
