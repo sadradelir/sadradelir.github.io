@@ -31,14 +31,16 @@ and reports anything missing.
 
 ### Résumé
 
-The site embeds the **PDF**. It is generated in two steps from the parent folder:
+The site embeds the **PDF**. Its content lives in `../cv-content.js` as data, and
+`../build-cv.js` renders it straight to PDF with pdfkit, no Word in the loop:
 
 ```bash
-node build_cv.js      # authors Sadra_Delir_CV.docx
-./make-cv-pdf.ps1     # converts it to .pdf via the installed Word
+node build-cv.js      # writes Sadra_Delir_CV.pdf + a dated copy
 ```
 
-Re-run `node build.js` afterwards, or the site keeps serving the old résumé.
+Re-run `node build.js` afterwards, or the site keeps serving the old résumé. The
+dated copy is what the download link hands a recruiter, so they can tell which
+version they are holding.
 
 ### Card clips
 
