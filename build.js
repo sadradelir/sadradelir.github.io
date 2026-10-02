@@ -94,6 +94,18 @@ const FILES = {
   CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV.pdf"),
 };
 
+// The download link hands over the dated filename build-cv.js writes alongside
+// the embedded PDF, so a recruiter can tell which version they have. Derived
+// here rather than written into the template, which would go stale the next
+// time the CV is rebuilt.
+function datedCvName() {
+  const parent = path.join(ROOT, "..");
+  const dated = fs.readdirSync(parent)
+    .filter((f) => /^Sadra_Delir_CV_\d{4}-\d{2}-\d{2}\.pdf$/.test(f))
+    .sort();
+  return dated.length ? dated[dated.length - 1] : "Sadra_Delir_CV.pdf";
+}
+
 // keys allowed to be missing; the build warns instead of leaving a hole
 const OPTIONAL = new Set([
   "AVATAR_B64",
@@ -163,6 +175,7 @@ for (const [key, file] of Object.entries(inlined)) {
 for (const [key, url] of Object.entries(linked)) {
   html = html.split(`{{${key}}}`).join(url);
 }
+html = html.split("{{CV_FILENAME}}").join(datedCvName());
 
 const required = missing.filter((m) => !m.endsWith("(optional)"));
 const left = html.match(/\{\{[A-Z0-9_]+\}\}/g);
