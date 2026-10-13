@@ -1,5 +1,14 @@
-// Builds portfolio.html from template.html by inlining assets as base64.
-// Usage: node build.js
+// Builds the site from template.html by inlining assets as base64.
+//
+//   node build.js            both entries
+//   node build.js games      just the games one
+//   node build.js backend    just the backend one
+//
+// Two entry points, one template. "/" leads on Unity and games, "/backend/"
+// on server work, and PROFILE_GAMES / PROFILE_BACKEND select between them
+// through the same conditionals the optional assets already use. Two copies of
+// the markup would drift within a month, so the only thing that differs per
+// profile is text, the CV, and some CSS ordering.
 //
 // Placeholders:
 //   {{KEY}}                              replaced with the asset's base64
@@ -98,23 +107,23 @@ const LINKED = {
   IR_SHOT3: "idlerunner/shot3.jpg",
 };
 
-// non-image files inlined as base64 too (CV download)
-// The CV comes in two tracks now. This site leads on games, so it carries the
-// Unity one; the backend CV goes out with backend applications directly.
-const FILES = {
-  CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV_Unity.pdf"),
+// The two entries, and what differs between them. `prefix` matters: linked
+// assets are written as relative URLs, and from backend/index.html "assets/x"
+// would resolve to backend/assets/x, which does not exist.
+const PROFILES = {
+  games:   { key: "PROFILE_GAMES",   out: "index.html",         cv: "Unity",   prefix: "" },
+  backend: { key: "PROFILE_BACKEND", out: "backend/index.html", cv: "Backend", prefix: "../" },
 };
 
 // The download link hands over the dated filename build-cv.js writes alongside
 // the embedded PDF, so a recruiter can tell which version they have. Derived
 // here rather than written into the template, which would go stale the next
 // time the CV is rebuilt.
-function datedCvName() {
+function datedCvName(track) {
   const parent = path.join(ROOT, "..");
-  const dated = fs.readdirSync(parent)
-    .filter((f) => /^Sadra_Delir_CV_Unity_\d{4}-\d{2}-\d{2}\.pdf$/.test(f))
-    .sort();
-  return dated.length ? dated[dated.length - 1] : "Sadra_Delir_CV_Unity.pdf";
+  const re = new RegExp(`^Sadra_Delir_CV_${track}_\d{4}-\d{2}-\d{2}\.pdf$`);
+  const dated = fs.readdirSync(parent).filter((f) => re.test(f)).sort();
+  return dated.length ? dated[dated.length - 1] : `Sadra_Delir_CV_${track}.pdf`;
 }
 
 // keys allowed to be missing; the build warns instead of leaving a hole
@@ -152,22 +161,19 @@ function resolveConditionals(html, present) {
   return html;
 }
 
-let html = fs.readFileSync(path.join(ROOT, "template.html"), "utf8");
+const TEMPLATE = fs.readFileSync(path.join(ROOT, "template.html"), "utf8");
 
+/* ---------- scan the assets once, they do not vary by profile ---------- */
 const present = new Set();
 const missing = [];
 const inlined = {};   // key -> file to base64
-const linked = {};    // key -> relative URL to leave as a link
-let inlineBytes = 0, linkedBytes = 0;
+const linked = {};    // key -> path relative to the site root
+let linkedBytes = 0;
 
 for (const [key, rel] of Object.entries(IMAGES)) {
   const file = path.join(ASSETS, rel);
   if (fs.existsSync(file)) { present.add(key); inlined[key] = file; }
   else missing.push(`${rel}${OPTIONAL.has(key) ? "  (optional)" : ""}`);
-}
-for (const [key, file] of Object.entries(FILES)) {
-  if (fs.existsSync(file)) { present.add(key); inlined[key] = file; }
-  else missing.push(file);
 }
 for (const [key, rel] of Object.entries(LINKED)) {
   const file = path.join(ASSETS, rel);
@@ -178,32 +184,54 @@ for (const [key, rel] of Object.entries(LINKED)) {
   } else missing.push(`${rel}${OPTIONAL.has(key) ? "  (optional)" : ""}`);
 }
 
-html = resolveConditionals(html, present);
-for (const [key, file] of Object.entries(inlined)) {
-  if (!html.includes(`{{${key}}}`)) continue;
-  inlineBytes += fs.statSync(file).size;
-  html = html.split(`{{${key}}}`).join(b64(file));
-}
-for (const [key, url] of Object.entries(linked)) {
-  html = html.split(`{{${key}}}`).join(url);
-}
-html = html.split("{{CV_FILENAME}}").join(datedCvName());
-
 const required = missing.filter((m) => !m.endsWith("(optional)"));
-const left = html.match(/\{\{[A-Z0-9_]+\}\}/g);
-
 if (missing.length) console.warn("missing assets:\n  " + missing.join("\n  "));
-if (left) console.warn("unresolved placeholders: " + [...new Set(left)].join(", "));
 
-const out = path.join(ROOT, "index.html");
-fs.writeFileSync(out, html);
+/* ---------- then render each entry ---------- */
+const wanted = process.argv[2] ? [process.argv[2]] : Object.keys(PROFILES);
+for (const name of wanted) {
+  if (!PROFILES[name]) {
+    console.error(`unknown profile "${name}", expected one of: ${Object.keys(PROFILES).join(", ")}`);
+    process.exit(1);
+  }
+}
 
 const mb = (n) => (n / 1024 / 1024).toFixed(2) + " MB";
+
+for (const name of wanted) {
+  const profile = PROFILES[name];
+  const cvFile = path.join(ROOT, "..", `Sadra_Delir_CV_${profile.cv}.pdf`);
+  const keys = new Set(present);
+  keys.add(profile.key);
+  if (fs.existsSync(cvFile)) keys.add("CV_B64");
+  else console.warn(`missing CV for ${name}: ${path.basename(cvFile)}`);
+
+  let html = resolveConditionals(TEMPLATE, keys);
+
+  for (const [key, file] of Object.entries(inlined)) {
+    if (!html.includes(`{{${key}}}`)) continue;
+    html = html.split(`{{${key}}}`).join(b64(file));
+  }
+  if (keys.has("CV_B64")) html = html.split("{{CV_B64}}").join(b64(cvFile));
+  for (const [key, url] of Object.entries(linked)) {
+    html = html.split(`{{${key}}}`).join(profile.prefix + url);
+  }
+  html = html.split("{{CV_FILENAME}}").join(datedCvName(profile.cv));
+
+  const left = html.match(/\{\{[A-Z0-9_]+\}\}/g);
+  if (left) console.warn(`${name}: unresolved placeholders: ` + [...new Set(left)].join(", "));
+
+  const out = path.join(ROOT, profile.out);
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, html);
+
+  console.log(
+    `built ${profile.out.padEnd(18)} ${mb(fs.statSync(out).size)} on first load` +
+    (required.length ? `  [${required.length} required asset(s) missing]` : "")
+  );
+}
+
 const clipCount = Object.keys(linked).length;
-console.log(
-  `built ${path.relative(ROOT, out)}, ${mb(fs.statSync(out).size)} on first load` +
-  (required.length ? `  [${required.length} required asset(s) missing]` : "")
-);
 if (clipCount) {
-  console.log(`  + ${clipCount} linked file(s), ${mb(linkedBytes)}, fetched on demand, not in that figure`);
+  console.log(`  + ${clipCount} linked file(s), ${mb(linkedBytes)}, fetched on demand, shared by both entries`);
 }

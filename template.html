@@ -1,5 +1,11 @@
-<title>Sadra Delir, Senior Software Engineer</title>
-<meta name="description" content="Sadra Delir, senior software engineer. Unity &amp; C#, backend systems, multiplayer architecture and technical leadership. 12+ years shipping games. Bonn, Germany.">
+<!--IF:PROFILE_GAMES-->
+<title>Sadra Delir, Senior Unity Developer</title>
+<meta name="description" content="Sadra Delir, senior Unity developer. Gameplay, multiplayer, editor tooling and technical leadership. 12+ years shipping games. Bonn, Germany.">
+<!--ENDIF-->
+<!--IF:PROFILE_BACKEND-->
+<title>Sadra Delir, Senior Backend Engineer</title>
+<meta name="description" content="Sadra Delir, senior backend engineer. C#/.NET and Python, real-time and distributed systems, APIs and production operations. 12+ years. Bonn, Germany.">
+<!--ENDIF-->
 <meta name="color-scheme" content="light dark">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,7 +366,41 @@
     .modal{animation:none;}
     .card:hover{transform:none;}
   }
+
+  .other-side{opacity:.75;}
 </style>
+
+<!--IF:PROFILE_BACKEND-->
+<style>
+  /* The backend entry is the same page with a different front. Rather than
+     keep two copies of the markup in step, the cards are reordered here with
+     the CSS order property, which works inside the grid they already sit in.
+     Ordering is per section, since order cannot move a card out of its own. */
+  .card[data-target="detail-railnation"]{order:1}
+  .card[data-target="detail-rnr"]{order:2}
+  .card[data-target="detail-palgam"]{order:3}
+  .card[data-target="detail-prototyping"]{order:4}
+
+  .card[data-target="detail-rpg"]{order:1}
+  .card[data-target="detail-divar"]{order:2}
+  .card[data-target="detail-puzzlerun"]{order:3}
+  .card[data-target="detail-racing"]{order:4}
+  .card[data-target="detail-idlerunner"]{order:5}
+
+  .card[data-target="detail-framecolor"]{order:1}
+  .card[data-target="detail-lotk"]{order:2}
+  .card[data-target="detail-cosmeow"]{order:3}
+
+  /* and the toolkit leads with the stack this side is about. Every block
+     needs a value: any left at the default 0 sorts ahead of all of them. */
+  .skill-block:nth-child(1){order:3}   /* Games */
+  .skill-block:nth-child(2){order:1}   /* Backend and multiplayer */
+  .skill-block:nth-child(3){order:2}   /* Infrastructure */
+  .skill-block:nth-child(4){order:4}   /* Mobile */
+  .skill-block:nth-child(5){order:5}
+  .skill-block:nth-child(6){order:6}
+</style>
+<!--ENDIF-->
 
 <div class="grid-tick"></div>
 
@@ -369,20 +409,31 @@
   <!--IFNOT:AVATAR_B64--><div class="avatar">SD</div><!--ENDIF-->
   <div class="top-text">
     <h1>Sadra Delir</h1>
-    <div class="role">SENIOR SOFTWARE ENGINEER, UNITY &amp; C#, BACKEND SYSTEMS, TECHNICAL LEADERSHIP</div>
+    <!--IF:PROFILE_GAMES--><div class="role">SENIOR UNITY DEVELOPER, C#, GAMEPLAY, MULTIPLAYER, TECHNICAL LEADERSHIP</div><!--ENDIF-->
+    <!--IF:PROFILE_BACKEND--><div class="role">SENIOR BACKEND ENGINEER, C# / .NET &amp; PYTHON, REAL-TIME &amp; DISTRIBUTED SYSTEMS</div><!--ENDIF-->
   </div>
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
 </header>
 
+<!--IF:PROFILE_GAMES-->
 <div class="pitch">
-  <strong>12+ years</strong> across Unity/C# games, backend systems and multiplayer architecture, from a solo cosy puzzle game to real-time multiplayer RPGs and the live infrastructure that keeps a decade-old title running. Technical lead experience, 36 prototypes taken from idea to playable, and 100+ developers mentored into software careers. Based in Bonn, Germany. Currently at Travian Games by day and building a solo Unity action game by night, and open to Senior Developer, Technical Lead, or Backend/Unity Engineering roles.
+  <strong>12+ years</strong> across Unity/C# games, backend systems and multiplayer architecture, from a solo cosy puzzle game to real-time multiplayer RPGs and the live infrastructure that keeps a decade-old title running. Technical lead experience, 36 prototypes taken from idea to playable, and 100+ developers mentored into software careers. Based in Bonn, Germany, authorised to work here. Currently at Travian Games by day and building a solo Unity action game by night, and open to Senior Developer, Technical Lead, or Backend/Unity Engineering roles.
 </div>
+<!--ENDIF-->
+<!--IF:PROFILE_BACKEND-->
+<div class="pitch">
+  <strong>12+ years</strong> building and running server-side systems in C#/.NET and Python: real-time and authoritative servers, APIs and services, event-driven architecture, and the databases underneath them. I have taken a simulation server's sustained CPU load from roughly 100 percent to roughly 10 percent, written a deterministic fixed-point physics engine so a server and its clients could not drift apart, and shipped backend features at a classifieds platform with around 35 million users. Equally at home opening an old codebase up to a new client as starting from nothing. Based in Bonn, Germany, authorised to work here, and open to Senior Backend Engineer, Technical Lead or Engineering Lead roles.
+</div>
+<!--ENDIF-->
 
 <div class="contact-row">
   <a href="mailto:sadra.delir@gmail.com">sadra.delir@gmail.com</a>
   <a href="https://www.linkedin.com/in/sadradelir/" target="_blank" rel="noopener">linkedin.com/in/sadradelir</a>
-  <a id="cv-link" href="#" download="{{CV_FILENAME}}" target="_blank" rel="noopener">↓ résumé (PDF)</a>
+  <!--IF:PROFILE_GAMES--><a id="cv-link" href="#" download="{{CV_FILENAME}}" target="_blank" rel="noopener">↓ résumé, Unity (PDF)</a><!--ENDIF-->
+  <!--IF:PROFILE_BACKEND--><a id="cv-link" href="#" download="{{CV_FILENAME}}" target="_blank" rel="noopener">↓ résumé, backend (PDF)</a><!--ENDIF-->
   <a href="#work">↓ projects</a>
+  <!--IF:PROFILE_GAMES--><a href="backend/" class="other-side">I also do backend ↗</a><!--ENDIF-->
+  <!--IF:PROFILE_BACKEND--><a href="../" class="other-side">I also do Unity and games ↗</a><!--ENDIF-->
 </div>
 
 <section id="work">
