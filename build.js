@@ -20,6 +20,10 @@ const IMAGES = {
   HERO_B64:     "cosmeow/hero.jpg",
   RN_HERO_B64:  "railnation/hero.jpg",
 
+  // Rail Nation Remastered is a separate game sharing Rail Nation's backend,
+  // so it gets its own card and its own shots rather than reusing the old ones
+  RNR_HERO_B64: "rnr/hero.jpg",
+
   AVATAR_B64: "avatar.jpg",
 
   // Lord of the Kings (working title): drop PNG/JPGs in assets/lotk/
@@ -50,6 +54,7 @@ const LINKED = {
   FC_CLIP:   "clips/framecolor.mp4",
   CM_CLIP:   "clips/cosmeow.mp4",
   RN_CLIP:   "clips/railnation.mp4",
+  RNR_CLIP:  "clips/rnr.mp4",
   BD_CLIP:   "clips/battleday.mp4",
   RACE_CLIP: "clips/racing.mp4",
   IR_CLIP:   "clips/idlerunner.mp4",
@@ -78,6 +83,10 @@ const LINKED = {
   PR_SHOT2: "prototyping/shot2.jpg",
   PR_SHOT3: "prototyping/shot3.jpg",
   PR_SHOT4: "prototyping/shot4.jpg",
+  RNR_SHOT1: "rnr/shot1.jpg",
+  RNR_SHOT2: "rnr/shot2.jpg",
+  RNR_SHOT3: "rnr/shot3.jpg",
+  RNR_SHOT4: "rnr/shot4.jpg",
 
   BD_SHOT1: "battleday/shot1.jpg",
   BD_SHOT2: "battleday/shot2.jpg",
@@ -117,6 +126,7 @@ const OPTIONAL = new Set([
   "IR_SHOT1", "IR_SHOT2", "IR_SHOT3",
   "PG_HERO_B64", "PG_CLIP", "PG_SHOT1", "PG_SHOT2", "PG_SHOT3",
   "PR_HERO_B64", "PR_CLIP", "PR_SHOT1", "PR_SHOT2", "PR_SHOT3", "PR_SHOT4",
+  "RNR_HERO_B64", "RNR_CLIP", "RNR_SHOT1", "RNR_SHOT2", "RNR_SHOT3", "RNR_SHOT4",
   "LOTK_HERO_B64", "LOTK_SHOT1_B64", "LOTK_SHOT2_B64", "LOTK_SHOT3_B64",
   "FC_HERO_B64", "FC_SHOT1_B64", "FC_SHOT2_B64",
 ]);
