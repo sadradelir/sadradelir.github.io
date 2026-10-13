@@ -395,9 +395,9 @@
         <!--IF:RN_CLIP--><video class="card-clip" muted loop playsinline preload="none" src="{{RN_CLIP}}"></video><!--ENDIF-->
       </div>
       <div class="card-body">
-        <div class="card-tag"><span>STUDIO · BACKEND</span><span class="live">● LIVE</span></div>
-        <div class="card-title">Rail Nation: Backend &amp; Live-Ops</div>
-        <div class="card-tagline">Keeping a decade-old railroad empire running for thousands of players.</div>
+        <div class="card-tag"><span>STUDIO · UNITY + BACKEND</span><span class="live">● SHIPPED</span></div>
+        <div class="card-title">Rail Nation Remastered</div>
+        <div class="card-tagline">A strategy game running since 2012, rebuilt as a Unity client on its original backend.</div>
       </div>
     </button>
 
@@ -548,7 +548,7 @@
     <div class="job current reveal">
       <div class="job-head"><div class="job-title">Senior Unity Developer: Rail Nation Remastered</div><div class="job-dates">Jan 2025 – present</div></div>
       <div class="job-org">Travian Games <span class="where">· Munich, Germany (remote)</span></div>
-      <div class="job-desc">Shipping end-to-end Unity features for Rail Nation's new client (Avatar Editor, Task System, License Trader, Ranking, Train Management), migrating systems one by one off the legacy web client, and writing the C# services and PHP APIs behind them.</div>
+      <div class="job-desc">Shipped Rail Nation Remastered, now live on Google Play and the App Store. End-to-end Unity features (Avatar Editor, License Manager, Leaderboard, Train Management, Auction), migrating systems one by one off the legacy web client, and writing the C# services and PHP APIs behind them. Took the simulation server's sustained CPU load from roughly 100 percent to roughly 10 percent, and built the code-generation pipeline that turns the PHP backend into typed C# calls inside Unity.</div>
     </div>
 
     <div class="job reveal">
@@ -851,24 +851,24 @@
 <template id="detail-railnation">
   <div class="build-bar">
     <span>STUDIO WORK <span class="mono">· Travian Games</span></span>
-    <span class="tag-live">● LIVE SINCE 2012</span>
+    <span class="tag-live">● SHIPPED 2026</span>
   </div>
   <img class="build-hero" src="data:image/jpeg;base64,{{RN_HERO_B64}}" alt="Rail Nation key art">
   <div class="build-body">
-    <div class="build-title">Rail Nation: Backend &amp; Live-Ops Engineering</div>
+    <div class="build-title">Rail Nation Remastered</div>
     <div class="build-tagline">Build your own railroad empire, live since 2012 and still running today.</div>
-    <div class="build-desc">Backend engineer on Rail Nation, a long-running browser/mobile economic strategy game with thousands of active players.</div>
+    <div class="build-desc">A new Unity client for an economic strategy game that has been running since 2012, now released on Google Play and the App Store. The brief was that the backend would not be replaced, so the new client had to talk to the old one. Three things stood in the way of that, and I spent two years on them before moving on to the features themselves.</div>
     <div class="stat-rail">
-      <div><div class="k">Role</div><div class="v">Backend Engineer</div></div>
-      <div><div class="k">Stack</div><div class="v">C#, .NET, PHP</div></div>
+      <div><div class="k">Role</div><div class="v">Senior Engineer</div></div>
+      <div><div class="k">Stack</div><div class="v">Unity, C#, PHP</div></div>
       <div><div class="k">Infra</div><div class="v">AWS / Kubernetes</div></div>
       <div><div class="k">Studio</div><div class="v">Travian Games</div></div>
     </div>
     <ul class="highlights">
-      <li>Diagnosed and fixed a severe production performance issue: sustained server CPU load from <strong>~100% down to ~10%</strong>.</li>
-      <li>Built and maintained C#/PHP backend APIs and gameplay systems: Avatar Editor, Task System, License Trader, Ranking, Train Management.</li>
-      <li>Wrote internal .NET tooling for real-time code generation, cutting feature turnaround for the team.</li>
-      <li>Worked on AWS/Kubernetes production infrastructure and helped migrate functionality from the legacy web client toward the newer Unity client.</li>
+      <li><strong>The simulation server sat at 100% CPU, permanently.</strong> One loop was re-checking every train in the world on every pass. I limited it to 1 Hz, which is all the game needs, then computed each train's arrival time from its route, speed and acceleration and kept the fleet sorted by it, so a pass only touches the trains actually due. Sustained load went to <strong>roughly 10%</strong>, and the same precomputed times let the client show accurate arrival estimates. All of it in a codebase with ten years of history.</li>
+      <li><strong>The PHP layer spoke JSON at a web client, not a Unity one.</strong> So I built a code-generation service that reads it and emits, into the Unity project, the C# classes needed to deserialise its payloads plus a typed wrapper for every endpoint, regenerated by one button in the editor. Hand-written JSON mapping left the client team's work entirely.</li>
+      <li><strong>Crash-recovery writes were stalling the tick.</strong> Moved the persistence onto its own thread so MySQL no longer held up the simulation.</li>
+      <li>Then the features, one system at a time from backend to finished UI: Avatar Editor, License Manager, Leaderboard, Train Management and Auction. Where the endpoints did not exist, I wrote them in the C# simulation server and the PHP service layer first.</li>
     </ul>
     <div class="gallery">
       <img width="720" height="405" src="{{RN_SHOT1_B64}}" alt="Rail Nation gameplay screenshot 1">
@@ -877,7 +877,8 @@
       <img width="720" height="405" src="{{RN_SHOT4_B64}}" alt="Rail Nation gameplay screenshot 4">
     </div>
     <div class="build-links">
-      <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.traviangames.railnationworld" target="_blank" rel="noopener">▶ Google Play</a>
+      <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.traviangames.rnr" target="_blank" rel="noopener">▶ Google Play</a>
+      <a class="btn primary" href="https://apps.apple.com/de/app/rail-nation-remastered/id6773766264" target="_blank" rel="noopener"> App Store</a>
       <a class="btn" href="https://www.rail-nation.com/" target="_blank" rel="noopener">game site ↗</a>
     </div>
   </div>

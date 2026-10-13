@@ -90,8 +90,10 @@ const LINKED = {
 };
 
 // non-image files inlined as base64 too (CV download)
+// The CV comes in two tracks now. This site leads on games, so it carries the
+// Unity one; the backend CV goes out with backend applications directly.
 const FILES = {
-  CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV.pdf"),
+  CV_B64: path.join(ROOT, "..", "Sadra_Delir_CV_Unity.pdf"),
 };
 
 // The download link hands over the dated filename build-cv.js writes alongside
@@ -101,9 +103,9 @@ const FILES = {
 function datedCvName() {
   const parent = path.join(ROOT, "..");
   const dated = fs.readdirSync(parent)
-    .filter((f) => /^Sadra_Delir_CV_\d{4}-\d{2}-\d{2}\.pdf$/.test(f))
+    .filter((f) => /^Sadra_Delir_CV_Unity_\d{4}-\d{2}-\d{2}\.pdf$/.test(f))
     .sort();
-  return dated.length ? dated[dated.length - 1] : "Sadra_Delir_CV.pdf";
+  return dated.length ? dated[dated.length - 1] : "Sadra_Delir_CV_Unity.pdf";
 }
 
 // keys allowed to be missing; the build warns instead of leaving a hole
